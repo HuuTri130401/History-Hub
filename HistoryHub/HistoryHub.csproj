@@ -21,16 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\SystemAccess\Favorites\" />
-    <Folder Include="Pages\SystemAccess\Feedbacks\" />
-    <Folder Include="Pages\SystemAccess\Figures\" />
-    <Folder Include="Pages\SystemAccess\TimeLines\" />
-    <Folder Include="Pages\SystemAccess\Quizzes\" />
-    <Folder Include="Pages\SystemAccess\Questions\" />
-    <Folder Include="Pages\SystemAccess\Periods\" />
-    <Folder Include="Pages\UserAccess\Favorites\" />
-    <Folder Include="Pages\UserAccess\Feedbacks\" />
-    <Folder Include="Pages\UserAccess\QuizAttempts\" />
+    <Folder Include="Pages\GuestAccess\" />
+    <Folder Include="Pages\MemberAccess\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
