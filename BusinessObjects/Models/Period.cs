@@ -16,6 +16,7 @@ namespace BusinessObjects.Models
         public int TimelineId { get; set; }
         public DateTime CreateDate { get; set; }
         public int CreateBy { get; set; }
+        public bool Status { get; set; }
 
         public virtual User CreateByNavigation { get; set; } = null!;
         public virtual Timeline Timeline { get; set; } = null!;

@@ -12,6 +12,7 @@ namespace BusinessObjects.Models
         public string Image { get; set; } = null!;
         public int CreateBy { get; set; }
         public DateTime CreateDate { get; set; }
+        public bool Status { get; set; }
 
         public virtual User CreateByNavigation { get; set; } = null!;
         public virtual Period Period { get; set; } = null!;

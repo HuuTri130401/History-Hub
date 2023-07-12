@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace BusinessObjects.Models
 {
@@ -29,11 +27,20 @@ namespace BusinessObjects.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=(local);Uid=sa;Pwd=12345;Database= HistoryHub; Trusted_Connection=true ");
-            }
+            //            if (!optionsBuilder.IsConfigured)
+            //            {
+            //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+            //                optionsBuilder.UseSqlServer("Server=PhiLong0103;Uid=sa;Pwd=123456;Database= HistoryHub;TrustServerCertificate=True");
+            //            }
+            optionsBuilder.UseSqlServer(GetConnectionString());
+        }
+
+        public string GetConnectionString()
+        {
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            IConfiguration configuration = builder.Build();
+            return configuration.GetConnectionString("DefaultConnection");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -52,19 +59,19 @@ namespace BusinessObjects.Models
                     .WithMany(p => p.Favorites)
                     .HasForeignKey(d => d.QuizId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Favorites__Quiz___4D94879B");
+                    .HasConstraintName("FK__Favorites__Quiz___4E88ABD4");
 
                 entity.HasOne(d => d.Timeline)
                     .WithMany(p => p.Favorites)
                     .HasForeignKey(d => d.TimelineId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Favorites__Timel__4CA06362");
+                    .HasConstraintName("FK__Favorites__Timel__4D94879B");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Favorites)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Favorites__User___4BAC3F29");
+                    .HasConstraintName("FK__Favorites__User___4CA06362");
             });
 
             modelBuilder.Entity<Feedback>(entity =>
@@ -89,19 +96,19 @@ namespace BusinessObjects.Models
                     .WithMany(p => p.Feedbacks)
                     .HasForeignKey(d => d.QuizId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Feedbacks__Quiz___48CFD27E");
+                    .HasConstraintName("FK__Feedbacks__Quiz___49C3F6B7");
 
                 entity.HasOne(d => d.Timeline)
                     .WithMany(p => p.Feedbacks)
                     .HasForeignKey(d => d.TimelineId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Feedbacks__Timel__47DBAE45");
+                    .HasConstraintName("FK__Feedbacks__Timel__48CFD27E");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Feedbacks)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Feedbacks__User___46E78A0C");
+                    .HasConstraintName("FK__Feedbacks__User___47DBAE45");
             });
 
             modelBuilder.Entity<Figure>(entity =>
@@ -133,13 +140,13 @@ namespace BusinessObjects.Models
                     .WithMany(p => p.Figures)
                     .HasForeignKey(d => d.CreateBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Figures__Create___59063A47");
+                    .HasConstraintName("FK__Figures__Create___59FA5E80");
 
                 entity.HasOne(d => d.Period)
                     .WithMany(p => p.Figures)
                     .HasForeignKey(d => d.PeriodId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Figures__Period___5812160E");
+                    .HasConstraintName("FK__Figures__Period___59063A47");
             });
 
             modelBuilder.Entity<Period>(entity =>
@@ -167,13 +174,13 @@ namespace BusinessObjects.Models
                     .WithMany(p => p.Periods)
                     .HasForeignKey(d => d.CreateBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Periods__Create___5535A963");
+                    .HasConstraintName("FK__Periods__Create___5629CD9C");
 
                 entity.HasOne(d => d.Timeline)
                     .WithMany(p => p.Periods)
                     .HasForeignKey(d => d.TimelineId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Periods__Timelin__5441852A");
+                    .HasConstraintName("FK__Periods__Timelin__5535A963");
             });
 
             modelBuilder.Entity<Question>(entity =>
@@ -215,13 +222,13 @@ namespace BusinessObjects.Models
                     .WithMany(p => p.Questions)
                     .HasForeignKey(d => d.CreatedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Questions__Creat__5070F446");
+                    .HasConstraintName("FK__Questions__Creat__5165187F");
 
                 entity.HasOne(d => d.Quiz)
                     .WithMany(p => p.Questions)
                     .HasForeignKey(d => d.QuizId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Questions__Quiz___5165187F");
+                    .HasConstraintName("FK__Questions__Quiz___52593CB8");
             });
 
             modelBuilder.Entity<Quiz>(entity =>
@@ -256,19 +263,19 @@ namespace BusinessObjects.Models
                     .WithMany(p => p.Quizzes)
                     .HasForeignKey(d => d.CreatedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Quizzes__Created__3F466844");
+                    .HasConstraintName("FK__Quizzes__Created__403A8C7D");
 
                 entity.HasOne(d => d.Timeline)
                     .WithMany(p => p.Quizzes)
                     .HasForeignKey(d => d.TimelineId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Quizzes__Timelin__403A8C7D");
+                    .HasConstraintName("FK__Quizzes__Timelin__412EB0B6");
             });
 
             modelBuilder.Entity<QuizAttempt>(entity =>
             {
                 entity.HasKey(e => e.AttemptId)
-                    .HasName("PK__QuizAtte__BBC48BD21760A937");
+                    .HasName("PK__QuizAtte__BBC48BD2FBBBAF21");
 
                 entity.Property(e => e.AttemptId).HasColumnName("Attempt_Id");
 
@@ -284,13 +291,13 @@ namespace BusinessObjects.Models
                     .WithMany(p => p.QuizAttempts)
                     .HasForeignKey(d => d.QuizId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__QuizAttem__Quiz___440B1D61");
+                    .HasConstraintName("FK__QuizAttem__Quiz___44FF419A");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.QuizAttempts)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__QuizAttem__User___4316F928");
+                    .HasConstraintName("FK__QuizAttem__User___440B1D61");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -337,12 +344,12 @@ namespace BusinessObjects.Models
                     .WithMany(p => p.Timelines)
                     .HasForeignKey(d => d.CreatedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Timelines__Creat__3C69FB99");
+                    .HasConstraintName("FK__Timelines__Creat__3D5E1FD2");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.Email, "UQ__Users__A9D1053403636FA5")
+                entity.HasIndex(e => e.Email, "UQ__Users__A9D10534E68A4BD6")
                     .IsUnique();
 
                 entity.Property(e => e.UserId).HasColumnName("User_Id");
@@ -378,7 +385,7 @@ namespace BusinessObjects.Models
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users__Role_Id__398D8EEE");
+                    .HasConstraintName("FK__Users__Role_Id__3A81B327");
             });
 
             OnModelCreatingPartial(modelBuilder);
