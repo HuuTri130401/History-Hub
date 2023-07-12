@@ -19,7 +19,7 @@ namespace BusinessObjects.Models
         public int CreatedBy { get; set; }
         public DateTime CreateDate { get; set; }
         public int NumberOfFavorite { get; set; }
-
+        public bool Status { get; set; }
         public virtual User CreatedByNavigation { get; set; } = null!;
         public virtual ICollection<Favorite> Favorites { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
