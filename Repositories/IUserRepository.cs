@@ -9,6 +9,6 @@ namespace Repositories
 {
     public interface IUserRepository : IGenericRepository<User>
     {
-        User checkLogin(string email, string password);
+        User getUserByEmailAndPassword(string email, string password);
     }
 }

@@ -3,7 +3,7 @@
     "HistoryHub": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "SystemAccess/Quizzes/AdminManageQuizzes",
+      "launchUrl": "Account/Login",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
