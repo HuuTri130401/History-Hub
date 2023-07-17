@@ -1,0 +1,88 @@
+﻿@page
+@model HistoryHub.Pages.SystemAccess.Quizzes.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Are you sure you want to In Active this Quiz?</h2>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.MaxScore)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.MaxScore)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.CompletionTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.CompletionTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.NumberOfFeedback)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.NumberOfFeedback)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.NumberOfFavorite)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.NumberOfFavorite)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.NumberOfQuestion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.NumberOfQuestion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.CreatedByNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.CreatedByNavigation.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Timeline)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.Timeline.Description)
+        </dd>
+    </dl>
+    <form method="post">
+        <input type="hidden" asp-for="Quiz.QuizId" />
+        <input style="background-color: red;
+                    color: #ffffff;
+                    padding: 5px 20px;
+                    border-radius: 3px;
+                    text-decoration: none;" type="submit" value="InActive"/> |
+        <a style="background-color: forestgreen;
+                    color: #ffffff;
+                    padding: 10px 20px;
+                    border-radius: 3px;
+                    text-decoration: none;"
+            asp-page="./AdminManageQuizzes">Back to List</a>
+    </form>
+</div>

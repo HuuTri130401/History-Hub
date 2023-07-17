@@ -1,0 +1,86 @@
+﻿@page
+@model HistoryHub.Pages.SystemAccess.Quizzes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details Quiz</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.MaxScore)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.MaxScore)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.CompletionTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.CompletionTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.NumberOfFeedback)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.NumberOfFeedback)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.NumberOfFavorite)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.NumberOfFavorite)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.NumberOfQuestion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.NumberOfQuestion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.CreatedByNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.CreatedByNavigation.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Timeline)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.Timeline.Title)
+        </dd>
+    </dl>
+</div>
+<div style="margin-top: 15px">
+    <a style="background-color: #66b3ff;
+                    color: #ffffff;
+                    padding: 10px 20px;
+                    border-radius: 3px;
+                    text-decoration: none;" asp-page="./Edit" asp-route-id="@Model.Quiz?.QuizId">Edit</a> |
+    <a style="  background-color: forestgreen;
+       color: #ffffff;
+       padding: 10px 20px;
+       border-radius: 3px;
+       text-decoration: none;" asp-page="./AdminManageQuizzes">Back to List</a>
+</div>

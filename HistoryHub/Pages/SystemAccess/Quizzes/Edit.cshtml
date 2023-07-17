@@ -1,0 +1,89 @@
+﻿@page
+@model HistoryHub.Pages.SystemAccess.Quizzes.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Update Quiz</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Quiz.QuizId" />
+            <div class="form-group">
+                <label asp-for="Quiz.Title" class="control-label"></label>
+                <input asp-for="Quiz.Title" class="form-control" />
+                <span asp-validation-for="Quiz.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.Description" class="control-label"></label>
+                <input asp-for="Quiz.Description" class="form-control" />
+                <span asp-validation-for="Quiz.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.MaxScore" class="control-label"></label>
+                <input asp-for="Quiz.MaxScore" class="form-control" />
+                <span asp-validation-for="Quiz.MaxScore" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Quiz.Status" /> @Html.DisplayNameFor(model => model.Quiz.Status)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.CreatedBy" class="control-label"></label>
+                <select asp-for="Quiz.CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
+                <span asp-validation-for="Quiz.CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.CompletionTime" class="control-label"></label>
+                <input asp-for="Quiz.CompletionTime" class="form-control" />
+                <span asp-validation-for="Quiz.CompletionTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.NumberOfFeedback" class="control-label"></label>
+                <input asp-for="Quiz.NumberOfFeedback" class="form-control" />
+                <span asp-validation-for="Quiz.NumberOfFeedback" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.NumberOfFavorite" class="control-label"></label>
+                <input asp-for="Quiz.NumberOfFavorite" class="form-control" />
+                <span asp-validation-for="Quiz.NumberOfFavorite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.NumberOfQuestion" class="control-label"></label>
+                <input asp-for="Quiz.NumberOfQuestion" class="form-control" />
+                <span asp-validation-for="Quiz.NumberOfQuestion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.TimelineId" class="control-label"></label>
+                <select asp-for="Quiz.TimelineId" class="form-control" asp-items="ViewBag.Title"></select>
+                <span asp-validation-for="Quiz.TimelineId" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top: 15px">
+                <input type="submit" value="Save" style="background-color: #00ace6;
+                    color: #ffffff;
+                    padding: 5px 20px;
+                    border-radius: 3px;
+                    text-decoration: none;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="margin-top: 15px">
+    <a asp-page="./AdminManageQuizzes" style="background-color: forestgreen;
+       color: #ffffff;
+       padding: 10px 20px;
+       border-radius: 3px;
+       text-decoration: none;">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -15,8 +15,7 @@ namespace BusinessObjects.Models
         public int CreatedBy { get; set; }
         public int QuizId { get; set; }
         public bool Status { get; set; }
-
-        public virtual User CreatedByNavigation { get; set; } = null!;
-        public virtual Quiz Quiz { get; set; } = null!;
+        public virtual User? CreatedByNavigation { get; set; } = null!;
+        public virtual Quiz? Quiz { get; set; } = null!;
     }
 }

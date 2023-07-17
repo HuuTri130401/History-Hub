@@ -1,0 +1,82 @@
+﻿@page
+@model HistoryHub.Pages.SystemAccess.Questions.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Question</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Question.QuestionId" />
+            <div class="form-group">
+                <label asp-for="Question.Question1" class="control-label"></label>
+                <input asp-for="Question.Question1" class="form-control" />
+                <span asp-validation-for="Question.Question1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.FalseAnswer1" class="control-label"></label>
+                <input asp-for="Question.FalseAnswer1" class="form-control" />
+                <span asp-validation-for="Question.FalseAnswer1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.FalseAnswer2" class="control-label"></label>
+                <input asp-for="Question.FalseAnswer2" class="form-control" />
+                <span asp-validation-for="Question.FalseAnswer2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.FalseAnswer3" class="control-label"></label>
+                <input asp-for="Question.FalseAnswer3" class="form-control" />
+                <span asp-validation-for="Question.FalseAnswer3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.CorrectAnswer" class="control-label"></label>
+                <input asp-for="Question.CorrectAnswer" class="form-control" />
+                <span asp-validation-for="Question.CorrectAnswer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.NumberOfQuestion" class="control-label"></label>
+                <input asp-for="Question.NumberOfQuestion" class="form-control" />
+                <span asp-validation-for="Question.NumberOfQuestion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.CreatedBy" class="control-label"></label>
+                <select asp-for="Question.CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
+                <span asp-validation-for="Question.CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.QuizId" class="control-label"></label>
+                <select asp-for="Question.QuizId" class="form-control" asp-items="ViewBag.QuizId"></select>
+                <span asp-validation-for="Question.QuizId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Question.Status" /> @Html.DisplayNameFor(model => model.Question.Status)
+                </label>
+            </div>
+            <div class="form-group">
+                <input style="background-color: #66b3ff;
+                    color: #ffffff;
+                    padding: 5px 20px;
+                    border-radius: 3px;
+                    text-decoration: none;" type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="margin-top: 15px">
+    <a style="background-color: forestgreen;
+       color: #ffffff;
+       padding: 10px 20px;
+       border-radius: 3px;
+       text-decoration: none;" asp-page="./AdminManageQuestions">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

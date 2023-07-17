@@ -11,7 +11,7 @@ namespace BusinessObjects.Models
         public int Score { get; set; }
         public DateTime CompletionTime { get; set; }
 
-        public virtual Quiz Quiz { get; set; } = null!;
-        public virtual User User { get; set; } = null!;
+        public virtual Quiz? Quiz { get; set; } = null!;
+        public virtual User? User { get; set; } = null!;
     }
 }

@@ -14,7 +14,7 @@ namespace BusinessObjects.Models
         public DateTime CreateDate { get; set; }
         public bool Status { get; set; }
 
-        public virtual User CreateByNavigation { get; set; } = null!;
-        public virtual Period Period { get; set; } = null!;
+        public virtual User? CreateByNavigation { get; set; } = null!;
+        public virtual Period? Period { get; set; } = null!;
     }
 }
