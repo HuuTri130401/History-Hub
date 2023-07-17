@@ -17,6 +17,18 @@ namespace BusinessObjects.Models
             Timelines = new HashSet<Timeline>();
         }
 
+        public User(string email, string fullName, string password, int roleId, bool status, string? phone, string? address, DateTime createDate)
+        {
+            Email = email;
+            FullName = fullName;
+            Password = password;
+            RoleId = roleId;
+            Status = status;
+            Phone = phone;
+            Address = address;
+            CreateDate = createDate;
+        }
+
         public int UserId { get; set; }
         public string Email { get; set; } = null!;
         public string FullName { get; set; } = null!;

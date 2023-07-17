@@ -53,12 +53,12 @@ namespace HistoryHub.Pages.Account
                 if (user.RoleId == 2)
                 {
                     HttpContext.Session.SetInt32("EditorRole", user.RoleId);
-                    return RedirectToPage("EditorAccess/EditorManageHome/Home");
+                    return RedirectToPage("/EditorAccess/EditorManageHome/Home");
                 }
                 if (user.RoleId == 3)
                 {
                     HttpContext.Session.SetInt32("MemberRole", user.RoleId);
-                    return RedirectToPage("MemberAccess");
+                    return RedirectToPage("/MemberAccess");
                 }
                 ViewData["Message"] = "Invalid email or password.";
             }
