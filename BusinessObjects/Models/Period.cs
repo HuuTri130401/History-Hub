@@ -18,8 +18,8 @@ namespace BusinessObjects.Models
         public int CreateBy { get; set; }
         public bool Status { get; set; }
 
-        public virtual User CreateByNavigation { get; set; } = null!;
-        public virtual Timeline Timeline { get; set; } = null!;
+        public virtual User? CreateByNavigation { get; set; } = null!;
+        public virtual Timeline? Timeline { get; set; } = null!;
         public virtual ICollection<Figure> Figures { get; set; }
     }
 }

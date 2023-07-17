@@ -259,7 +259,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/systemaccess/adminDashboard/Home">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active">Questions</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -271,55 +271,58 @@
                     <div class="card top-selling overflow-auto">
 
                         <div class="card-body pb-0">
-                            <h5 class="card-title">Resent Editors</h5>
-
+                            <h5 class="card-title">Resent Questions</h5>
+                            <p>
+                                <a style="background-color: forestgreen;
+                                color: #ffffff;
+                                padding: 10px 20px;
+                                border-radius: 3px;
+                                text-decoration: none;" asp-page="Create">Create Question</a>
+                            </p>
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Full Name</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Question</th>
+                                        <th scope="col">False Ans01</th>
+                                        <th scope="col">False Ans02</th>
+                                        <th scope="col">False Ans03</th>
+                                        <th scope="col">Correct Ans</th>
+                                        <th scope="col">Created by</th>
+                                        <th scope="col">Quiz Title</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="fw-bold">aditor1@gmail.com</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">124</td>
-                                        <td><span class="badge bg-danger">Rejected</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">124</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">124</td>
-                                        <td class="fw-bold">98</td>
-                                        <td><span class="badge bg-danger">Rejected</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
-                                    </tr>
-
+                                    @foreach (var item in Model.Question.Where(q => q.Status))
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Question1)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FalseAnswer1)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FalseAnswer2)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FalseAnswer3)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CorrectAnswer)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedByNavigation.Email)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Quiz.Title)
+                                            </td>
+                                            <td>
+                                                <a class="badge bg-success" asp-page="./Edit" asp-route-id="@item.QuizId">Update</a> |
+                                                <a class="badge bg-info-light" asp-page="./Details" asp-route-id="@item.QuizId">Details</a> |
+                                                <a class="badge bg-danger" asp-page="./Delete" asp-route-id="@item.QuizId">In Active</a>
+                                            </td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
 

@@ -20,7 +20,7 @@ namespace BusinessObjects.Models
         public DateTime CreateDate { get; set; }
         public int NumberOfFavorite { get; set; }
         public bool Status { get; set; }
-        public virtual User CreatedByNavigation { get; set; } = null!;
+        public virtual User? CreatedByNavigation { get; set; } = null!;
         public virtual ICollection<Favorite> Favorites { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual ICollection<Period> Periods { get; set; }

@@ -28,7 +28,7 @@ namespace BusinessObjects.Models
         public string? Address { get; set; }
         public DateTime CreateDate { get; set; }
 
-        public virtual Role Role { get; set; } = null!;
+        public virtual Role? Role { get; set; } = null!;
         public virtual ICollection<Favorite> Favorites { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual ICollection<Figure> Figures { get; set; }

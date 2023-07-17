@@ -20,13 +20,13 @@ namespace BusinessObjects.Models
         public bool Status { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CompletionTime { get; set; }
-        public int NumberOfFeedback { get; set; }
-        public int NumberOfFavorite { get; set; }
-        public int NumberOfQuestion { get; set; }
+        public int? NumberOfFeedback { get; set; }
+        public int? NumberOfFavorite { get; set; }
+        public int? NumberOfQuestion { get; set; }
         public int TimelineId { get; set; }
 
-        public virtual User CreatedByNavigation { get; set; } = null!;
-        public virtual Timeline Timeline { get; set; } = null!;
+        public virtual User? CreatedByNavigation { get; set; } = null!;
+        public virtual Timeline? Timeline { get; set; } = null!;
         public virtual ICollection<Favorite> Favorites { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual ICollection<Question> Questions { get; set; }

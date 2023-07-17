@@ -1,0 +1,81 @@
+﻿@page
+@model HistoryHub.Pages.SystemAccess.Questions.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details Question</h1>
+<hr />
+
+<div>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.Question1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.Question1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.FalseAnswer1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.FalseAnswer1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.FalseAnswer2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.FalseAnswer2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.FalseAnswer3)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.FalseAnswer3)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.CorrectAnswer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.CorrectAnswer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.NumberOfQuestion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.NumberOfQuestion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.CreatedByNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.CreatedByNavigation.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.Quiz)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.Quiz.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a style="background-color: #66b3ff;
+                    color: #ffffff;
+                    padding: 10px 20px;
+                    border-radius: 3px;
+                    text-decoration: none;" asp-page="./Edit" asp-route-id="@Model.Question?.QuestionId">Edit</a> |
+    <a style="background-color: forestgreen;
+       color: #ffffff;
+       padding: 10px 20px;
+       border-radius: 3px;
+       text-decoration: none;" asp-page="./AdminManageQuestions">Back to List</a>
+</div>

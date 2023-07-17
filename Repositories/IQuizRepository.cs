@@ -9,5 +9,6 @@ namespace Repositories
 {
     public interface IQuizRepository : IGenericRepository<Quiz>
     {
+       Task<bool> UpdateStatusQuiz(int? quizId, bool status);
     }
 }

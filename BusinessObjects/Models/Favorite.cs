@@ -10,8 +10,8 @@ namespace BusinessObjects.Models
         public int TimelineId { get; set; }
         public int QuizId { get; set; }
 
-        public virtual Quiz Quiz { get; set; } = null!;
-        public virtual Timeline Timeline { get; set; } = null!;
-        public virtual User User { get; set; } = null!;
+        public virtual Quiz? Quiz { get; set; } = null!;
+        public virtual Timeline? Timeline { get; set; } = null!;
+        public virtual User? User { get; set; } = null!;
     }
 }

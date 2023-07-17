@@ -13,8 +13,8 @@ namespace BusinessObjects.Models
         public bool Status { get; set; }
         public DateTime CreateDate { get; set; }
 
-        public virtual Quiz Quiz { get; set; } = null!;
-        public virtual Timeline Timeline { get; set; } = null!;
-        public virtual User User { get; set; } = null!;
+        public virtual Quiz? Quiz { get; set; } = null!;
+        public virtual Timeline? Timeline { get; set; } = null!;
+        public virtual User? User { get; set; } = null!;
     }
 }
