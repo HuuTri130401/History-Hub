@@ -189,8 +189,8 @@
                 <span asp-validation-for="Figure.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Figure.Period.PeriodName" class="control-label">Period</label>
-                <select asp-for="Figure.Period.PeriodName" class ="form-control" asp-items="ViewBag.PeriodId"></select>
+                <label asp-for="Figure.PeriodId" class="control-label">Period</label>
+                <select asp-for="Figure.PeriodId" class ="form-control" asp-items="ViewBag.PeriodId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Figure.Image" class="control-label">Image</label>
@@ -198,8 +198,8 @@
                 <span asp-validation-for="Figure.Image" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Figure.CreateByNavigation.Email" class="control-label">Created By</label>
-                <select asp-for="Figure.CreateByNavigation.Email" class ="form-control" asp-items="ViewBag.CreateBy"></select>
+                <label asp-for="Figure.CreateBy" class="control-label">Created By</label>
+                <select asp-for="Figure.CreateBy" class="form-control" asp-items="ViewBag.CreateBy"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Figure.CreateDate" class="control-label">Create Date</label>

@@ -46,13 +46,23 @@
             @Html.DisplayNameFor(model => model.Period.Timeline)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Period.Timeline.Description)
+            @Html.DisplayFor(model => model.Period.Timeline.Title)
         </dd>
     </dl>
     
     <form method="post">
         <input type="hidden" asp-for="Period.PeriodId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="InActive"
+               style="background-color: red;
+                    color: #ffffff;
+                    padding: 5px 20px;
+                    border-radius: 3px;
+                    text-decoration: none;" /> |
+        <a style="background-color: forestgreen;
+                    color: #ffffff;
+                    padding: 10px 20px;
+                    border-radius: 3px;
+                    text-decoration: none;"
+            asp-page="./EditorManagePeriods">Back to List</a>
     </form>
 </div>

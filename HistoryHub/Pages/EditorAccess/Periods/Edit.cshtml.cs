@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BusinessObjects.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BusinessObjects.Models;
 
 namespace HistoryHub.Pages.EditorAccess.Periods
 {
@@ -29,14 +25,14 @@ namespace HistoryHub.Pages.EditorAccess.Periods
                 return NotFound();
             }
 
-            var period =  await _context.Periods.FirstOrDefaultAsync(m => m.PeriodId == id);
+            var period = await _context.Periods.FirstOrDefaultAsync(m => m.PeriodId == id);
             if (period == null)
             {
                 return NotFound();
             }
             Period = period;
-           ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
-           ViewData["TimelineId"] = new SelectList(_context.Timelines, "TimelineId", "Description");
+            ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
+            ViewData["TimelineId"] = new SelectList(_context.Timelines, "TimelineId", "Description");
             return Page();
         }
 
@@ -67,12 +63,12 @@ namespace HistoryHub.Pages.EditorAccess.Periods
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./EditorManagePeriods");
         }
 
         private bool PeriodExists(int id)
         {
-          return (_context.Periods?.Any(e => e.PeriodId == id)).GetValueOrDefault();
+            return (_context.Periods?.Any(e => e.PeriodId == id)).GetValueOrDefault();
         }
     }
 }

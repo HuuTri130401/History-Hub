@@ -4,33 +4,33 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 
-namespace HistoryHub.Pages.EditorAccess.Periods
+namespace HistoryHub.Pages.SystemAccess.Timelines
 {
     public class DetailsModel : PageModel
     {
         private readonly BusinessObjects.Models.HistoryHubContext _context;
-        private readonly IPeriodRepository _periodRepository;
+        private readonly ITimelineRepository _timelineRepository;
 
-        public DetailsModel(BusinessObjects.Models.HistoryHubContext context, PeriodRepository periodRepository)
+        public DetailsModel(BusinessObjects.Models.HistoryHubContext context, ITimelineRepository timelineRepository)
         {
             _context = context;
-            _periodRepository = periodRepository;
+            _timelineRepository = timelineRepository;
         }
 
-        public Period Period { get; set; } = default!;
+        public Timeline Timeline { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _periodRepository.GetAll().ToList() == null)
+            if (id == null || _timelineRepository.GetAll().ToList() == null)
             {
                 return NotFound();
             }
 
-            Period = await _context.Periods
+            Timeline = await _context.Timelines
                 .AsNoTracking()
-                .Include(u => u.CreateByNavigation)
-                .FirstOrDefaultAsync(m => m.PeriodId == id);
-            if (Period == null)
+                .Include(u => u.CreatedByNavigation)
+                .FirstOrDefaultAsync(m => m.TimelineId == id);
+            if (Timeline == null)
             {
                 return NotFound();
             }

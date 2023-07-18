@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BusinessObjects.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BusinessObjects.Models;
+using Repositories;
 
 namespace HistoryHub.Pages.EditorAccess.Figures
 {
     public class DeleteModel : PageModel
     {
         private readonly BusinessObjects.Models.HistoryHubContext _context;
+        private readonly IFigureRepository _figureRepository;
 
-        public DeleteModel(BusinessObjects.Models.HistoryHubContext context)
+        public DeleteModel(BusinessObjects.Models.HistoryHubContext context, IFigureRepository figureRepository)
         {
             _context = context;
+            _figureRepository = figureRepository;
         }
 
         [BindProperty]
-      public Figure Figure { get; set; } = default!;
+        public Figure Figure { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,35 +27,37 @@ namespace HistoryHub.Pages.EditorAccess.Figures
                 return NotFound();
             }
 
-            var figure = await _context.Figures.FirstOrDefaultAsync(m => m.FigureId == id);
+            Figure = await _context.Figures
+                .AsNoTracking()
+                .Include(u => u.CreateByNavigation)
+                .FirstOrDefaultAsync(m => m.FigureId == id);
 
-            if (figure == null)
+            if (Figure == null)
             {
                 return NotFound();
             }
-            else 
-            {
-                Figure = figure;
-            }
+
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int? id, bool status)
         {
             if (id == null || _context.Figures == null)
             {
                 return NotFound();
             }
-            var figure = await _context.Figures.FindAsync(id);
+            var figure = await _figureRepository.UpdateFigureStatus(id, status);
 
-            if (figure != null)
+            if (figure)
             {
-                Figure = figure;
-                _context.Figures.Remove(Figure);
-                await _context.SaveChangesAsync();
+                return RedirectToPage("./EditorManageFigures");
+            }
+            else
+            {
+                return NotFound();
             }
 
-            return RedirectToPage("./Index");
+
         }
     }
 }

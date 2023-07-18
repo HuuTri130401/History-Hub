@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BusinessObjects.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BusinessObjects.Models;
 
 namespace HistoryHub.Pages.EditorAccess.Figures
 {
@@ -29,14 +25,14 @@ namespace HistoryHub.Pages.EditorAccess.Figures
                 return NotFound();
             }
 
-            var figure =  await _context.Figures.FirstOrDefaultAsync(m => m.FigureId == id);
+            var figure = await _context.Figures.FirstOrDefaultAsync(m => m.FigureId == id);
             if (figure == null)
             {
                 return NotFound();
             }
             Figure = figure;
-           ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
-           ViewData["PeriodId"] = new SelectList(_context.Periods, "PeriodId", "Description");
+            ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
+            ViewData["PeriodId"] = new SelectList(_context.Periods, "PeriodId", "Description");
             return Page();
         }
 
@@ -67,12 +63,12 @@ namespace HistoryHub.Pages.EditorAccess.Figures
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./EditorManageFigures");
         }
 
         private bool FigureExists(int id)
         {
-          return (_context.Figures?.Any(e => e.FigureId == id)).GetValueOrDefault();
+            return (_context.Figures?.Any(e => e.FigureId == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BusinessObjects.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BusinessObjects.Models;
+using Repositories;
 
 namespace HistoryHub.Pages.EditorAccess.Periods
 {
     public class DeleteModel : PageModel
     {
         private readonly BusinessObjects.Models.HistoryHubContext _context;
+        private readonly IPeriodRepository _periodRepository;
 
-        public DeleteModel(BusinessObjects.Models.HistoryHubContext context)
+        public DeleteModel(BusinessObjects.Models.HistoryHubContext context, IPeriodRepository periodRepository)
         {
             _context = context;
+            _periodRepository = periodRepository;
         }
 
         [BindProperty]
-      public Period Period { get; set; } = default!;
+        public Period Period { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,35 +27,36 @@ namespace HistoryHub.Pages.EditorAccess.Periods
                 return NotFound();
             }
 
-            var period = await _context.Periods.FirstOrDefaultAsync(m => m.PeriodId == id);
+            Period = await _context.Periods
+                .AsNoTracking()
+                .Include(u => u.CreateByNavigation)
+                .FirstOrDefaultAsync(m => m.PeriodId == id);
 
-            if (period == null)
+            if (Period == null)
             {
                 return NotFound();
             }
-            else 
-            {
-                Period = period;
-            }
+
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int? id, bool status)
         {
             if (id == null || _context.Periods == null)
             {
                 return NotFound();
             }
-            var period = await _context.Periods.FindAsync(id);
+            var period = await _periodRepository.UpdatePeriodStatus(id, status);
 
-            if (period != null)
+            if (period)
             {
-                Period = period;
-                _context.Periods.Remove(Period);
-                await _context.SaveChangesAsync();
+                return RedirectToPage("./EditorManagePeriods");
+            }
+            else
+            {
+                return NotFound();
             }
 
-            return RedirectToPage("./Index");
         }
     }
 }

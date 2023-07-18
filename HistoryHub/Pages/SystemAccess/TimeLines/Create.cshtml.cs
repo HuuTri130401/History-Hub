@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repositories;
 
-namespace HistoryHub.Pages.EditorAccess.Timelines
+namespace HistoryHub.Pages.SystemAccess.Timelines
 {
     public class CreateModel : PageModel
     {

@@ -2,22 +2,27 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Repositories;
 
 namespace HistoryHub.Pages.EditorAccess.Figures
 {
     public class CreateModel : PageModel
     {
-        private readonly BusinessObjects.Models.HistoryHubContext _context;
+        private readonly IUserRepository _userRepository;
+        private readonly IPeriodRepository _periodRepository;
+        private readonly IFigureRepository _figureRepository;
 
-        public CreateModel(BusinessObjects.Models.HistoryHubContext context)
+        public CreateModel(IUserRepository userRepository, IPeriodRepository periodRepository, IFigureRepository figureRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
+            _periodRepository = periodRepository;
+            _figureRepository = figureRepository;
         }
 
         public IActionResult OnGet()
         {
-            ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
-            ViewData["PeriodId"] = new SelectList(_context.Periods, "PeriodId", "PeriodName");
+            ViewData["CreateBy"] = new SelectList(_userRepository.GetAll().ToList(), "UserId", "Email");
+            ViewData["PeriodId"] = new SelectList(_periodRepository.GetAll().ToList(), "PeriodId", "PeriodName");
             return Page();
         }
 
@@ -28,15 +33,15 @@ namespace HistoryHub.Pages.EditorAccess.Figures
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            //if (!ModelState.IsValid || _context.Figures == null || Figure == null)
-            //{
-            //    return Page();
-            //}
+            if (!ModelState.IsValid || _figureRepository.GetAll() == null || Figure == null)
+            {
+                return Page();
+            }
 
-            _context.Figures.Add(Figure);
-            await _context.SaveChangesAsync();
+            _figureRepository.Insert(Figure);
 
-            return RedirectToPage("./Index");
+
+            return RedirectToPage("/EditorAccess/Figures/EditorManageFigures");
         }
     }
 }

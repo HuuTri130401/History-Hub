@@ -2,22 +2,28 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Repositories;
 
 namespace HistoryHub.Pages.EditorAccess.Periods
 {
     public class CreateModel : PageModel
     {
-        private readonly BusinessObjects.Models.HistoryHubContext _context;
 
-        public CreateModel(BusinessObjects.Models.HistoryHubContext context)
+        private readonly IUserRepository _userRepository;
+        private readonly ITimelineRepository _timelineRepository;
+        private readonly IPeriodRepository _periodRepository;
+
+        public CreateModel(IUserRepository userRepository, ITimelineRepository timelineRepository, IPeriodRepository periodRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
+            _timelineRepository = timelineRepository;
+            _periodRepository = periodRepository;
         }
 
         public IActionResult OnGet()
         {
-            ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
-            ViewData["TimelineId"] = new SelectList(_context.Timelines, "TimelineId", "Title");
+            ViewData["CreateBy"] = new SelectList(_userRepository.GetAll().ToList(), "UserId", "Email");
+            ViewData["TimelineId"] = new SelectList(_timelineRepository.GetAll().ToList(), "TimelineId", "Title");
             return Page();
         }
 
@@ -28,15 +34,15 @@ namespace HistoryHub.Pages.EditorAccess.Periods
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            //if (!ModelState.IsValid || _context.Periods == null || Period == null)
-            //{
-            //    return Page();
-            //}
+            if (!ModelState.IsValid || _periodRepository.GetAll() == null || Period == null)
+            {
+                return Page();
+            }
 
-            _context.Periods.Add(Period);
-            await _context.SaveChangesAsync();
+            _periodRepository.Insert(Period);
 
-            return RedirectToPage("./Index");
+
+            return RedirectToPage("/EditorAccess/Periods/EditorManagePeriods");
         }
     }
 }

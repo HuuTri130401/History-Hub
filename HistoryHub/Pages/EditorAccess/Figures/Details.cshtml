@@ -55,7 +55,15 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Figure?.FigureId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+<div style="margin-top: 15px">
+    <a style="background-color: #66b3ff;
+                    color: #ffffff;
+                    padding: 10px 20px;
+                    border-radius: 3px;
+                    text-decoration: none;" asp-page="./Edit" asp-route-id="@Model.Figure?.FigureId">Edit</a> |
+    <a style="  background-color: forestgreen;
+       color: #ffffff;
+       padding: 10px 20px;
+       border-radius: 3px;
+       text-decoration: none;" asp-page="./EditorManageFigures">Back to List</a>
 </div>
