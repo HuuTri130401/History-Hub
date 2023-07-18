@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Repositories
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        public User checkLogin(string email, string password)
+        public User getUserByEmailAndPassword(string email, string password)
         {
             return _historyHubContext.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
         }

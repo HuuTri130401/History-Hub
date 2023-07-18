@@ -61,19 +61,19 @@
                     <p class="text-center small">Enter your username or email & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form class="row g-3 needs-validation" novalidate method="post">
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username/ Email</label>
                       <div class="input-group has-validation">
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Please enter your username.</div>
+                        <input type="text" asp-for="Email" class="form-control" required>
+                        <div class="invalid-feedback">Please enter your Email.</div>
                       </div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      <input type="password" asp-for="Password" class="form-control" required>
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
