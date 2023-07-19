@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 
-namespace HistoryHub.Pages.EditorAccess.Periods
+namespace HistoryHub.Pages.SystemAccess.Periods
 {
     public class DetailsModel : PageModel
     {

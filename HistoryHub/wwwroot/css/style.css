@@ -383,6 +383,10 @@ h6 {
         color: #012970;
     }
 
+    .header.toggle-sidebar .sidebar {
+        left: -300px; /* Điều chỉnh giá trị left để side bar thu vào */
+    }
+
     .header .search-bar {
         min-width: 360px;
         padding: 0 20px;
@@ -674,7 +678,7 @@ h6 {
         font-size: 15px;
         font-weight: 600;
         color: #4154f1;
-        transition: 0.3;
+        transition: background-color 0.3s ease;
         background: #f6f9ff;
         padding: 10px 15px;
         border-radius: 4px;
@@ -725,7 +729,7 @@ h6 {
             font-size: 14px;
             font-weight: 600;
             color: #012970;
-            transition: 0.3;
+            transition: background-color 0.3s ease;
             padding: 10px 0 10px 40px;
             transition: 0.3s;
         }

@@ -1,9 +1,7 @@
 using BusinessObjects.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Repositories;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace HistoryHub.Pages.Account
@@ -53,7 +51,7 @@ namespace HistoryHub.Pages.Account
                 if (user.RoleId == 2)
                 {
                     HttpContext.Session.SetInt32("EditorRole", user.RoleId);
-                    return RedirectToPage("/EditorAccess/EditorManageHome/Home");
+                    return RedirectToPage("/EditorAccess/Timelines/EditorManageTimelines");
                 }
                 if (user.RoleId == 3)
                 {

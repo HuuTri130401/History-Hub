@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace HistoryHub.Pages.SystemAccess.Timelines
+namespace HistoryHub.Pages.SystemAccess.Periods
 {
     public class EditModel : PageModel
     {
@@ -16,22 +16,23 @@ namespace HistoryHub.Pages.SystemAccess.Timelines
         }
 
         [BindProperty]
-        public Timeline Timeline { get; set; } = default!;
+        public Period Period { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Timelines == null)
+            if (id == null || _context.Periods == null)
             {
                 return NotFound();
             }
 
-            var timeline = await _context.Timelines.FirstOrDefaultAsync(m => m.TimelineId == id);
-            if (timeline == null)
+            var period = await _context.Periods.FirstOrDefaultAsync(m => m.PeriodId == id);
+            if (period == null)
             {
                 return NotFound();
             }
-            Timeline = timeline;
-            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "Email");
+            Period = period;
+            ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
+            ViewData["TimelineId"] = new SelectList(_context.Timelines, "TimelineId", "Description");
             return Page();
         }
 
@@ -44,8 +45,7 @@ namespace HistoryHub.Pages.SystemAccess.Timelines
                 return Page();
             }
 
-            _context.Attach(Timeline).State = EntityState.Modified;
-
+            _context.Attach(Period).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +53,7 @@ namespace HistoryHub.Pages.SystemAccess.Timelines
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TimelineExists(Timeline.TimelineId))
+                if (!PeriodExists(Period.PeriodId))
                 {
                     return NotFound();
                 }
@@ -63,12 +63,12 @@ namespace HistoryHub.Pages.SystemAccess.Timelines
                 }
             }
 
-            return RedirectToPage("./AdminManageTimelines");
+            return RedirectToPage("./AdminManagePeriods");
         }
 
-        private bool TimelineExists(int id)
+        private bool PeriodExists(int id)
         {
-            return (_context.Timelines?.Any(e => e.TimelineId == id)).GetValueOrDefault();
+            return (_context.Periods?.Any(e => e.PeriodId == id)).GetValueOrDefault();
         }
     }
 }

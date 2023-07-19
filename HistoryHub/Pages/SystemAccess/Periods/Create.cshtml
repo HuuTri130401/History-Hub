@@ -1,8 +1,8 @@
 ﻿@page
-@model HistoryHub.Pages.SystemAccess.Timelines.EditModel
+@model HistoryHub.Pages.SystemAccess.Periods.CreateModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
 <head>
@@ -172,63 +172,52 @@
 
 <main id="main" class="main">
 
-<h4>Timeline</h4>
+<h4>Period</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Timeline.TimelineId" />
             <div class="form-group">
-                <label asp-for="Timeline.Title" class="control-label"></label>
-                <input asp-for="Timeline.Title" class="form-control" />
-                <span asp-validation-for="Timeline.Title" class="text-danger"></span>
+                <label asp-for="Period.PeriodName" class="control-label">Period Name</label>
+                <input asp-for="Period.PeriodName" class="form-control" />
+                <span asp-validation-for="Period.PeriodName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Timeline.Description" class="control-label"></label>
-                <input asp-for="Timeline.Description" class="form-control" />
-                <span asp-validation-for="Timeline.Description" class="text-danger"></span>
+                <label asp-for="Period.Description" class="control-label">Description</label>
+                <input asp-for="Period.Description" class="form-control" />
+                <span asp-validation-for="Period.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Timeline.CreatedBy" class="control-label">Create By</label>
-                <select asp-for="Timeline.CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
-                <span asp-validation-for="Timeline.CreatedBy" class="text-danger"></span>
+                <label asp-for="Period.TimelineId" class="control-label">Timeline</label>
+                <select asp-for="Period.TimelineId" class ="form-control" asp-items="ViewBag.TimelineId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Timeline.CreateDate" class="control-label">Create Date</label>
-                <input asp-for="Timeline.CreateDate" class="form-control" />
-                <span asp-validation-for="Timeline.CreateDate" class="text-danger"></span>
+                <label asp-for="Period.CreateDate" class="control-label"></label>
+                <input asp-for="Period.CreateDate" class="form-control" />
+                <span asp-validation-for="Period.CreateDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Timeline.NumberOfFavorite" class="control-label">Number of Favourite</label>
-                <input asp-for="Timeline.NumberOfFavorite" class="form-control" placeholder="0" disabled/>
-                <span asp-validation-for="Timeline.NumberOfFavorite" class="text-danger"></span>
+                <label asp-for="Period.CreateBy" class="control-label">Created By</label>
+                <select asp-for="Period.CreateBy" class ="form-control" asp-items="ViewBag.CreateBy"></select>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Timeline.Status" /> @Html.DisplayNameFor(model => model.Timeline.Status)
+                    <input class="form-check-input" asp-for="Period.Status" /> @Html.DisplayNameFor(model => model.Period.Status)
                 </label>
             </div>
-                <div class="form-group" style="margin-top: 15px">
-                    <input type="submit" value="Save" style="background-color: #00ace6;
-                    color: #ffffff;
-                    padding: 5px 20px;
-                    border-radius: 3px;
-                    text-decoration: none;" />
-                </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
         </form>
     </div>
 </div>
 
-    <div style="margin-top: 15px">
-        <a asp-page="./AdminManageTimelines" style="background-color: forestgreen;
-       color: #ffffff;
-       padding: 10px 20px;
-       border-radius: 3px;
-       text-decoration: none;">Back to List</a>
-    </div>
-
+<div>
+        <a asp-page="./AdminManagePeriods"><i class="bi bi-arrow-left-square-fill"></i> Back to List</a>
+</div>
 </main>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
