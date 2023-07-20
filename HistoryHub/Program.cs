@@ -1,4 +1,5 @@
-using BusinessObjects.Models;
+﻿using BusinessObjects.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 
@@ -22,6 +23,15 @@ builder.Services.AddScoped<IQuizAttemptRepository, QuizAttemptRepository>();
 
 builder.Services.AddSession(); //use session
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.Cookie.Name = "MyAppCookie";
+            options.ExpireTimeSpan = TimeSpan.FromDays(30);
+            options.SlidingExpiration = true;
+        });
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,6 +48,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.UseSession(); //use session
 

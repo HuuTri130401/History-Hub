@@ -1,10 +1,11 @@
-using BusinessObjects.Models;
-using Microsoft.AspNetCore.Http;
+﻿using BusinessObjects.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Repositories;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 
 namespace HistoryHub.Pages.Account
 {
@@ -23,10 +24,13 @@ namespace HistoryHub.Pages.Account
 
         [BindProperty]
         public string Password { get; set; }
+
+        [BindProperty]
+        public bool RememberMe { get; set; }
         public void OnGet()
         {
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -35,13 +39,30 @@ namespace HistoryHub.Pages.Account
 
             User user = userRepository.getUserByEmailAndPassword(Email, Password);
 
-            if (user == null) 
+            if (user == null)
             {
                 ViewData["Message"] = "Invalid Email or Password";
                 return Page();
             }
             else
             {
+                var claims = new List<Claim>
+                {
+                     new Claim(ClaimTypes.Name, Email)
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = RememberMe
+                };
+
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties);
+
                 // Save user information to session
                 HttpContext.Session.SetString("UserName", user.FullName);
                 HttpContext.Session.SetString("UserEmail", user.Email);
@@ -53,11 +74,12 @@ namespace HistoryHub.Pages.Account
                 }
                 if (user.RoleId == 2)
                 {
-                    return RedirectToPage("/EditorAccess/EditorManageHome/Home");
+                    HttpContext.Session.SetInt32("EditorRole", user.RoleId);
+                    return RedirectToPage("/EditorAccess/Timelines/EditorManageTimelines");
                 }
                 if (user.RoleId == 3)
                 {
-                    return RedirectToPage("/MemberAccess/UsersProfile");
+                    return RedirectToPage("/GuestAccess/Home");
                 }
                 ViewData["Message"] = "Invalid email or password.";
             }
