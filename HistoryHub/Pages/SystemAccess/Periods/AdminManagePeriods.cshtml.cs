@@ -1,7 +1,3 @@
-using BusinessObjects.Models;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-
 namespace HistoryHub.Pages.SystemAccess.Periods
 {
     public class AdminManagePeriodsModel : PageModel

@@ -277,7 +277,7 @@
                             <div class="card info-card sales-card">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Guests <span>| This month</span></h5>
+                                    <h5 class="card-title">Guests <span>| This Year</span></h5>
 
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -296,7 +296,7 @@
                             <div class="card info-card revenue-card">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Members <span>| This Month</span></h5>
+                                    <h5 class="card-title">Members <span>| This Year</span></h5>
 
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -400,70 +400,11 @@
 
                             </div>
                         </div><!-- End Reports -->
-                        <!-- Top Selling -->
-                        <div class="col-12">
-                            <div class="card top-selling overflow-auto">
 
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title">Resent Editors</h5>
-
-                                    <table class="table table-borderless">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Full Name</th>
-                                                <th scope="col">Phone</th>
-                                                <th scope="col">Address</th>
-                                                <th scope="col">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="fw-bold">aditor1@gmail.com</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">124</td>
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">124</td>
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">124</td>
-                                                <td class="fw-bold">98</td>
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-
-                                </div>
-
-                            </div>
-                        </div><!-- End Top Selling -->
 
                     </div>
                 </div><!-- End Left side columns -->
+
                 <!-- Right side columns -->
                 <div class="col-lg-4">
 
@@ -473,11 +414,62 @@
                         <div class="card-body">
                             <h5 class="card-title">Feedback List <span>| Today</span></h5>
 
-
                         </div>
                     </div><!-- End Recent Activity -->
 
                 </div><!-- End Right side columns -->
+
+
+                <!-- Top Selling -->
+                <div class="col-12">
+                    <div class="card top-selling overflow-auto">
+
+                        <div class="card-body pb-0">
+                            <h5 class="card-title">Resent Editors</h5>
+
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Created Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.User)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FullName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Phone)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Address)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreateDate)
+                                            </td>
+                                            <td>
+                                                <a class="badge bg-success" asp-page="./Edit" asp-route-id="@item.UserId">Update</a> |
+                                                <a class="badge bg-info-light" asp-page="./Details" asp-route-id="@item.UserId">Details</a> |
+                                                <a class="badge bg-danger" asp-page="./Delete" asp-route-id="@item.UserId">In Active</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div><!-- End Top Selling -->
 
             </div>
         </section>
@@ -502,8 +494,6 @@
     <script src="~/vendor/tinymce/tinymce.min.js"></script>
     <script src="~/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="~/js/main.js"></script>
 </body>
 
 </html>

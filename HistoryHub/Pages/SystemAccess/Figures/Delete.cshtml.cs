@@ -1,10 +1,4 @@
-﻿using BusinessObjects.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Repositories;
-
-namespace HistoryHub.Pages.SystemAccess.Figures
+﻿namespace HistoryHub.Pages.SystemAccess.Figures
 {
     public class DeleteModel : PageModel
     {

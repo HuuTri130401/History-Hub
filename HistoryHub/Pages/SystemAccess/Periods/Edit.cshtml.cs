@@ -1,10 +1,4 @@
-﻿using BusinessObjects.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-
-namespace HistoryHub.Pages.SystemAccess.Periods
+﻿namespace HistoryHub.Pages.SystemAccess.Periods
 {
     public class EditModel : PageModel
     {
@@ -32,7 +26,7 @@ namespace HistoryHub.Pages.SystemAccess.Periods
             }
             Period = period;
             ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
-            ViewData["TimelineId"] = new SelectList(_context.Timelines, "TimelineId", "Description");
+            ViewData["TimelineId"] = new SelectList(_context.Timelines, "TimelineId", "Title");
             return Page();
         }
 

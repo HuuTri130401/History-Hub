@@ -1,10 +1,4 @@
-﻿using BusinessObjects.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Repositories;
-
-namespace HistoryHub.Pages.SystemAccess.Figures
+﻿namespace HistoryHub.Pages.SystemAccess.Figures
 {
     public class CreateModel : PageModel
     {
