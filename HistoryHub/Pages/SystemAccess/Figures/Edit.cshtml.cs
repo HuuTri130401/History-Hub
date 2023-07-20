@@ -1,4 +1,10 @@
-﻿namespace HistoryHub.Pages.SystemAccess.Figures
+﻿using BusinessObjects.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+
+namespace HistoryHub.Pages.SystemAccess.Figures
 {
     public class EditModel : PageModel
     {

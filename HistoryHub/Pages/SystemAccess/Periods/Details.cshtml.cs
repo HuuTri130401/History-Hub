@@ -1,4 +1,10 @@
-﻿namespace HistoryHub.Pages.SystemAccess.Periods
+﻿using BusinessObjects.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Repositories;
+
+namespace HistoryHub.Pages.SystemAccess.Periods
 {
     public class DetailsModel : PageModel
     {
