@@ -1,16 +1,14 @@
-using BusinessObjects.Models;
+﻿using BusinessObjects.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace HistoryHub.Pages.EditorAccess.Periods
 {
-    public class EditorManagePeriodsModel : PageModel
+    public class IndexModel : PageModel
     {
-
-
         private readonly BusinessObjects.Models.HistoryHubContext _context;
 
-        public EditorManagePeriodsModel(BusinessObjects.Models.HistoryHubContext context)
+        public IndexModel(BusinessObjects.Models.HistoryHubContext context)
         {
             _context = context;
         }
@@ -26,6 +24,5 @@ namespace HistoryHub.Pages.EditorAccess.Periods
                 .Include(p => p.Timeline).ToListAsync();
             }
         }
-
     }
 }

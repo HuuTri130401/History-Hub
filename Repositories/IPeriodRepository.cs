@@ -1,13 +1,9 @@
 ﻿using BusinessObjects.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repositories
 {
     public interface IPeriodRepository : IGenericRepository<Period>
     {
+        Task<bool> UpdatePeriodStatus(int? periodId, bool status);
     }
 }
