@@ -50,7 +50,7 @@ namespace HistoryHub.Pages.SystemAccess.Timelines
 
             if (timeline)
             {
-                return RedirectToPage("./EditorManageTimelines");
+                return RedirectToPage("./AdminManageTimelines");
             }
             else
             {

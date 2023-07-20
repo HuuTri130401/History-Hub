@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace HistoryHub.Pages.SystemAccess.Timelines
+namespace HistoryHub.Pages.SystemAccess.Figures
 {
     public class EditModel : PageModel
     {
@@ -16,22 +16,23 @@ namespace HistoryHub.Pages.SystemAccess.Timelines
         }
 
         [BindProperty]
-        public Timeline Timeline { get; set; } = default!;
+        public Figure Figure { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Timelines == null)
+            if (id == null || _context.Figures == null)
             {
                 return NotFound();
             }
 
-            var timeline = await _context.Timelines.FirstOrDefaultAsync(m => m.TimelineId == id);
-            if (timeline == null)
+            var figure = await _context.Figures.FirstOrDefaultAsync(m => m.FigureId == id);
+            if (figure == null)
             {
                 return NotFound();
             }
-            Timeline = timeline;
-            ViewData["CreatedBy"] = new SelectList(_context.Users, "UserId", "Email");
+            Figure = figure;
+            ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
+            ViewData["PeriodId"] = new SelectList(_context.Periods, "PeriodId", "Description");
             return Page();
         }
 
@@ -44,8 +45,7 @@ namespace HistoryHub.Pages.SystemAccess.Timelines
                 return Page();
             }
 
-            _context.Attach(Timeline).State = EntityState.Modified;
-
+            _context.Attach(Figure).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +53,7 @@ namespace HistoryHub.Pages.SystemAccess.Timelines
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TimelineExists(Timeline.TimelineId))
+                if (!FigureExists(Figure.FigureId))
                 {
                     return NotFound();
                 }
@@ -63,12 +63,12 @@ namespace HistoryHub.Pages.SystemAccess.Timelines
                 }
             }
 
-            return RedirectToPage("./AdminManageTimelines");
+            return RedirectToPage("AdminManageFigures");
         }
 
-        private bool TimelineExists(int id)
+        private bool FigureExists(int id)
         {
-            return (_context.Timelines?.Any(e => e.TimelineId == id)).GetValueOrDefault();
+            return (_context.Figures?.Any(e => e.FigureId == id)).GetValueOrDefault();
         }
     }
 }

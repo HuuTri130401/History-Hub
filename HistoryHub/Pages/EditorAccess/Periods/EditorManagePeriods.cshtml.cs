@@ -7,7 +7,6 @@ namespace HistoryHub.Pages.EditorAccess.Periods
     public class EditorManagePeriodsModel : PageModel
     {
 
-
         private readonly BusinessObjects.Models.HistoryHubContext _context;
 
         public EditorManagePeriodsModel(BusinessObjects.Models.HistoryHubContext context)
