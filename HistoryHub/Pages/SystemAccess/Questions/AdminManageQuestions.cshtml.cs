@@ -37,6 +37,7 @@ namespace HistoryHub.Pages.SystemAccess.Questions
                 if (roleId == 3)
                 {
                     TempData["ErrorMessage"] = "You not have permission";
+                    return RedirectToPage("/Account/Login");
                 }
             }
             else
