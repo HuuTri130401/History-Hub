@@ -19,6 +19,8 @@ namespace HistoryHub.Pages.SystemAccess.Users
             _context = context;
         }
 
+        public bool status = true;
+        public DateTime cretedDate = DateTime.Now;
         [BindProperty]
         public User User { get; set; } = default!;
 
@@ -29,13 +31,13 @@ namespace HistoryHub.Pages.SystemAccess.Users
                 return NotFound();
             }
 
-            var user =  await _context.Users.FirstOrDefaultAsync(m => m.UserId == id);
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.UserId == id);
             if (user == null)
             {
                 return NotFound();
             }
             User = user;
-           ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleId");
+            ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleName");
             return Page();
         }
 
@@ -43,11 +45,11 @@ namespace HistoryHub.Pages.SystemAccess.Users
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
+            User = new User(User.UserId ,User.Email, User.FullName, User.Password, User.RoleId, status, User.Phone, User.Address, cretedDate);
             _context.Attach(User).State = EntityState.Modified;
 
             try
@@ -65,13 +67,21 @@ namespace HistoryHub.Pages.SystemAccess.Users
                     throw;
                 }
             }
-
-            return RedirectToPage("./Index");
+            if(User.RoleId == 2)
+            {
+                TempData["EditSuccess"] = "Update Successfully";
+                return RedirectToPage("./Editors");
+            }else if(User.RoleId == 3)
+            {
+                TempData["EditSuccess"] = "Update Successfully";
+                return RedirectToPage("./Members");
+            }
+            return Page();
         }
 
         private bool UserExists(int id)
         {
-          return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
+            return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
         }
     }
 }

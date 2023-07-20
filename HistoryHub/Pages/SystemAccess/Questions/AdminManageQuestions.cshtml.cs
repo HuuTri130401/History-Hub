@@ -1,4 +1,5 @@
 using BusinessObjects.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,17 +16,35 @@ namespace HistoryHub.Pages.SystemAccess.Questions
 
         public IList<Question> Question{ get; set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
-            if (_context.Quizzes != null)
+            int? roleId = HttpContext.Session.GetInt32("HasRole");
+
+            if (roleId != null)
             {
-                Question = await _context.Questions
-                .Include(q => q.CreatedByNavigation)
-                .Include(q => q.Quiz)
-                .OrderBy(qu => qu.Question1)
-                .OrderBy(qu => qu.QuizId)
-                .ToListAsync();
+                if(roleId == 1 || roleId == 2)
+                {
+                    if (_context.Quizzes != null)
+                    {
+                        Question = await _context.Questions
+                        .Include(q => q.CreatedByNavigation)
+                        .Include(q => q.Quiz)
+                        .OrderBy(qu => qu.Question1)
+                        .OrderBy(qu => qu.QuizId)
+                        .ToListAsync();
+                    }
+                }
+                if(roleId == 3)
+                {
+                    TempData["ErrorMessage"] = "You not have permission";
+                }
             }
+            else
+            {
+                TempData["ErrorMessage"] = "Can not access this page, please Login";
+                return RedirectToPage("/Account/Login");
+            }
+            return Page();
         }
     }
 }

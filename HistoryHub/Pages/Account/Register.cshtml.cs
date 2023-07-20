@@ -44,6 +44,7 @@ namespace HistoryHub.Pages.Account
             }
 
             userRepository.Insert(user);
+            TempData["RegisterSuccess"] = "Register Successfully";
             return RedirectToPage("/Account/Login");
         }
     }

@@ -238,12 +238,31 @@
             <h1>Manage Members</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="members.html">Users</a></li>
+                    <li class="breadcrumb-item"><a href="">Users</a></li>
                     <li class="breadcrumb-item active">Members</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
-
+        <div class="col-lg-3">
+            @if (@TempData["NewUserSuccess"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-1"></i>
+                    <span>@TempData["NewUserSuccess"]</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+        </div>
+        <div class="col-lg-3">
+            @if (@TempData["EditSuccess"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-1"></i>
+                    <span>@TempData["EditSuccess"]</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+        </div>
         <section class="section dashboard">
             <div class="row">
 
@@ -257,7 +276,13 @@
 
                                 <div class="card-body pb-0">
                                     <h5 class="card-title">Resent Members</h5>
-
+                                    <p>
+                                        <a style="background-color: forestgreen;
+                                        color: #ffffff;
+                                        padding: 10px 20px;
+                                        border-radius: 3px;
+                                        text-decoration: none;" asp-page="Create">Create Member</a>
+                                    </p>
                                     <table class="table table-borderless">
                                         <thead>
                                             <tr>
@@ -265,46 +290,35 @@
                                                 <th scope="col">Full Name</th>
                                                 <th scope="col">Phone</th>
                                                 <th scope="col">Address</th>
-                                                <th scope="col">Status</th>
+                                                <th scope="col">Created Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="fw-bold">aditor1@gmail.com</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">124</td>
-                                                <td><span class="badge bg-danger">InActive</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">124</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">124</td>
-                                                <td class="fw-bold">98</td>
-                                                <td><span class="badge bg-danger">InActive</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td class="fw-bold">98</td>
-                                                <td><span class="badge bg-success">Active</span></td>
-                                            </tr>
-
+                                            @foreach (var item in Model.User)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Email)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.FullName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Phone)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Address)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CreateDate)
+                                                    </td>
+                                                    <td>
+                                                        <a class="badge bg-success" asp-page="./Edit" asp-route-id="@item.UserId">Update</a> |
+                                                        <a class="badge bg-info-light" asp-page="./Details" asp-route-id="@item.UserId">Details</a> |
+                                                        <a class="badge bg-danger" asp-page="./Delete" asp-route-id="@item.UserId">In Active</a>
+                                                    </td>
+                                                </tr>
+                                            }
                                         </tbody>
                                     </table>
 

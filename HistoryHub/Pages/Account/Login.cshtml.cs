@@ -35,7 +35,7 @@ namespace HistoryHub.Pages.Account
 
             User user = userRepository.getUserByEmailAndPassword(Email, Password);
 
-            if (user == null)
+            if (user == null) 
             {
                 ViewData["Message"] = "Invalid Email or Password";
                 return Page();
@@ -45,20 +45,19 @@ namespace HistoryHub.Pages.Account
                 // Save user information to session
                 HttpContext.Session.SetString("UserName", user.FullName);
                 HttpContext.Session.SetString("UserEmail", user.Email);
+                HttpContext.Session.SetInt32("HasRole", user.RoleId);
+
                 if (user.RoleId == 1)
                 {
-                    HttpContext.Session.SetInt32("AdminRole", user.RoleId);
                     return RedirectToPage("/SystemAccess/AdminDashboard/Home");
                 }
                 if (user.RoleId == 2)
                 {
-                    HttpContext.Session.SetInt32("EditorRole", user.RoleId);
                     return RedirectToPage("/EditorAccess/EditorManageHome/Home");
                 }
                 if (user.RoleId == 3)
                 {
-                    HttpContext.Session.SetInt32("MemberRole", user.RoleId);
-                    return RedirectToPage("/MemberAccess");
+                    return RedirectToPage("/MemberAccess/UsersProfile");
                 }
                 ViewData["Message"] = "Invalid email or password.";
             }

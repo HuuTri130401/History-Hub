@@ -3,7 +3,7 @@
     "HistoryHub": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "Account/Login",
+      "launchUrl": "SystemAccess/Users/Editors",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
