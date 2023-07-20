@@ -14,7 +14,7 @@ namespace HistoryHub.Pages.SystemAccess.Questions
             _context = context;
         }
 
-        public IList<Question> Question{ get; set; } = default!;
+        public IList<Question> Question { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -22,9 +22,9 @@ namespace HistoryHub.Pages.SystemAccess.Questions
 
             if (roleId != null)
             {
-                if(roleId == 1 || roleId == 2)
+                if (roleId == 1 || roleId == 2)
                 {
-                    if (_context.Quizzes != null)
+                    if (_context.Questions != null)
                     {
                         Question = await _context.Questions
                         .Include(q => q.CreatedByNavigation)
@@ -34,7 +34,7 @@ namespace HistoryHub.Pages.SystemAccess.Questions
                         .ToListAsync();
                     }
                 }
-                if(roleId == 3)
+                if (roleId == 3)
                 {
                     TempData["ErrorMessage"] = "You not have permission";
                 }
