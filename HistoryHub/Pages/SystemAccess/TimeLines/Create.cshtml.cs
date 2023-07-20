@@ -1,10 +1,4 @@
-﻿using BusinessObjects.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Repositories;
-
-namespace HistoryHub.Pages.SystemAccess.Timelines
+﻿namespace HistoryHub.Pages.SystemAccess.Timelines
 {
     public class CreateModel : PageModel
     {
@@ -39,7 +33,7 @@ namespace HistoryHub.Pages.SystemAccess.Timelines
             _timelineRepository.Insert(Timeline);
 
 
-            return RedirectToPage("AdminManageTimelines");
+            return RedirectToPage("/SystemAccess/Timelines/AdminManageTimelines");
         }
     }
 }

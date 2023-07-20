@@ -1,10 +1,4 @@
-﻿using BusinessObjects.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Repositories;
-
-namespace HistoryHub.Pages.SystemAccess.Periods
+﻿namespace HistoryHub.Pages.SystemAccess.Periods
 {
     public class CreateModel : PageModel
     {
@@ -42,7 +36,7 @@ namespace HistoryHub.Pages.SystemAccess.Periods
             _periodRepository.Insert(Period);
 
 
-            return RedirectToPage("AdminManagePeriods");
+            return RedirectToPage("./AdminManagePeriods");
         }
     }
 }

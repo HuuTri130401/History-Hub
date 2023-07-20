@@ -1,10 +1,4 @@
-﻿using BusinessObjects.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-
-namespace HistoryHub.Pages.SystemAccess.Periods
+﻿namespace HistoryHub.Pages.SystemAccess.Periods
 {
     public class EditModel : PageModel
     {
@@ -63,7 +57,7 @@ namespace HistoryHub.Pages.SystemAccess.Periods
                 }
             }
 
-            return RedirectToPage("AdminManagePeriods");
+            return RedirectToPage("./AdminManagePeriods");
         }
 
         private bool PeriodExists(int id)

@@ -11,7 +11,7 @@ namespace HistoryHub.Pages.EditorAccess.Periods
         private readonly BusinessObjects.Models.HistoryHubContext _context;
         private readonly IPeriodRepository _periodRepository;
 
-        public DetailsModel(BusinessObjects.Models.HistoryHubContext context, PeriodRepository periodRepository)
+        public DetailsModel(BusinessObjects.Models.HistoryHubContext context, IPeriodRepository periodRepository)
         {
             _context = context;
             _periodRepository = periodRepository;

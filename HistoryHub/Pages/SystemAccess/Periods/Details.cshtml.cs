@@ -1,17 +1,11 @@
-﻿using BusinessObjects.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Repositories;
-
-namespace HistoryHub.Pages.SystemAccess.Periods
+﻿namespace HistoryHub.Pages.SystemAccess.Periods
 {
     public class DetailsModel : PageModel
     {
-        private readonly HistoryHubContext _context;
+        private readonly BusinessObjects.Models.HistoryHubContext _context;
         private readonly IPeriodRepository _periodRepository;
 
-        public DetailsModel(HistoryHubContext context, PeriodRepository periodRepository)
+        public DetailsModel(BusinessObjects.Models.HistoryHubContext context, IPeriodRepository periodRepository)
         {
             _context = context;
             _periodRepository = periodRepository;

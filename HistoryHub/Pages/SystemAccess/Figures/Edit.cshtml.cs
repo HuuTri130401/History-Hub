@@ -1,10 +1,4 @@
-﻿using BusinessObjects.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-
-namespace HistoryHub.Pages.SystemAccess.Figures
+﻿namespace HistoryHub.Pages.SystemAccess.Figures
 {
     public class EditModel : PageModel
     {
@@ -63,7 +57,7 @@ namespace HistoryHub.Pages.SystemAccess.Figures
                 }
             }
 
-            return RedirectToPage("AdminManageFigures");
+            return RedirectToPage("./AdminManageFigures");
         }
 
         private bool FigureExists(int id)

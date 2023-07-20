@@ -1,0 +1,397 @@
+﻿@page
+@model HistoryHub.Pages.GuestAccess.HomeModel
+@{
+}
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Home Page</title>
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <!-- custom admin css file link  -->
+    <link rel="stylesheet" href="~/css/Home.css" />
+
+    <!-- Boostrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+          crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"></script>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/js/Home.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="flex">
+            <div class="container">
+                <a href="Home.html" class="logo">
+                    <img src="~/img/historyhub-logo.jpg"
+                         alt=""
+                         class="images" />
+                </a>
+
+                <a href="Login_v5/Login.html"
+                   class="Login"
+                   style="
+              width: 180px;
+              color: black;
+              height: 100px;
+              margin-left: 1200px;
+            ">
+                    <i class="fa-solid fa-right-to-bracket fa-3x"></i>
+                </a>
+            </div>
+            </div>
+            <div class="navbar">
+                <ul>
+
+                    <li>
+                        <a href="">Timeline <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-menu">
+
+                            <ul>
+                                @foreach (var item in Model.Timelines)
+                                {
+
+                                    <li>
+                                        <a asp-page="./Home" asp-route-id="@item.TimelineId">
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+
+                        </div>
+                    </li>
+
+                <li>
+                    <a href="">Period<i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-menu">
+
+                        <ul>
+                            @foreach (var item in Model.Periods)
+                            {
+
+                                <li>
+                                    <a asp-page="./Period" asp-route-id="@item.PeriodId">
+                                        @Html.DisplayFor(modelItem => item.PeriodName)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                </li>
+
+                <li>
+                    <a href="">Fiugre <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-menu">
+
+                        <ul>
+                            @foreach (var item in Model.Figures)
+                            {
+
+                                <li>
+                                    <a asp-page="./Figure" asp-route-id="@item.FigureId">
+                                        @Html.DisplayFor(modelItem => item.FigureName)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                </li>
+
+                <li>
+                    <a href="./Quiz">Quiz <i class="fas fa-caret-down"></i></a>
+                    
+                </li>
+
+                <li>
+                    <a href="./Feedback">Feedback <i class="fas fa-caret-down"></i></a>
+                    
+                </li>
+                <li>
+                    <a href="./Favourite">Favourite <i class="fas fa-caret-down"></i></a>
+
+                </li>
+
+                </ul>
+            </div>
+
+            <div class="events-content">
+            <h2><a asp-page="./TimeLine" asp-route-id="@Model.Timeline.TimelineId">@Html.DisplayFor(model => model.Timeline.Title)</a></h2>
+                <p>@Html.DisplayFor(model => model.Timeline.Description)</p>
+            </div>
+            <form action="" class="searchbar">
+                <input type="text" class="searchbox" placeholder="Tìm Kiếm" />
+                <button id="btnsearch">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+
+    </header>
+
+</body>
+</html>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Home Page</title>
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <!-- custom admin css file link  -->
+    <link rel="stylesheet" href="~/css/Home.css" />
+    <!-- Boostrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+          crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"></script>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/js/Home.js"></script>
+    <script src="~/js/main.js"></script>
+
+    <link href="~/css/style.css" rel="stylesheet">
+    <!-- Historyhub -->
+    <link href="~/img/historyhub-admin.png" rel="icon">
+    <link href="~/img/historyhub-admin.png" rel="history-hub-icon">
+</head>
+<body>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="/editoraccess/editormanagehome/Home" class="logo d-flex align-items-center">
+                <img src="~/img/historyhub-logo.jpg" alt="">
+                <span class="d-none d-lg-block">History-Hub</span>
+            </a>
+            
+        </div><!-- End Logo -->
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li style="font-size: 20px; margin-right: 30px; ">
+                    <a href="./Home">Home</a>
+                </li>
+                <li style="font-size: 20px; margin-right: 30px; " class=" nav-item dropdown">
+                    <a href="" data-bs-toggle="dropdown">Dong chay lich su <i class="fas fa-caret-down"></i></a>
+                    <div>
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                            @foreach (var item in Model.Timelines)
+                            {
+
+                                <li>
+                                    <a asp-page="./Home" asp-route-id="@item.TimelineId">
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                </li>
+                <li style="font-size: 20px; margin-right: 30px;" class=" nav-item dropdown">
+                    <a href="" data-bs-toggle="dropdown">Period<i class="fas fa-caret-down"></i></a>
+                    <div>
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                            @foreach (var item in Model.Periods)
+                            {
+
+                                <li>
+                                    <a asp-page="./Period" asp-route-id="@item.PeriodId">
+                                        @Html.DisplayFor(modelItem => item.PeriodName)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                </li>
+
+                <li style="font-size: 20px; margin-right: 30px; " class=" nav-item dropdown">
+                    <a href="" data-bs-toggle="dropdown">Fiugre <i class="fas fa-caret-down"></i></a>
+                    <div>
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                            @foreach (var item in Model.Figures)
+                            {
+
+                                <li>
+                                    <a asp-page="./Figure" asp-route-id="@item.FigureId">
+                                        @Html.DisplayFor(modelItem => item.FigureName)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                </li>
+
+                <li style="font-size: 20px; margin-right: 30px; ">
+                    <a href="./Quiz">Quiz</a>
+
+                </li>
+
+                <li style="font-size: 20px; margin-right: 30px; ">
+                    <a href="./Feedback">Feedback</a>
+
+                </li>
+                <li style="font-size: 20px; margin-right: 30px; ">
+                    <a href="./Favourite">Favourite</a>
+
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+            <div class="navbar">
+                <ul>
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="">Home</a>
+                    </li>
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="">Dong chay lich su <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-menu">
+
+                            <ul>
+                                @foreach (var item in Model.Timelines)
+                                {
+
+                                    <li>
+                                        <a asp-page="./HomeGuest" asp-route-id="@item.TimelineId">
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+
+                        </div>
+                    </li>
+                    <li style="font-size: 20px; margin-right: 30px;">
+                        <a href="">Period<i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-menu">
+
+                            <ul>
+                                @foreach (var item in Model.Periods)
+                                {
+
+                                    <li>
+                                        <a asp-page="./Period" asp-route-id="@item.PeriodId">
+                                            @Html.DisplayFor(modelItem => item.PeriodName)
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+
+                        </div>
+                    </li>
+
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="">Fiugre <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-menu">
+
+                            <ul>
+                                @foreach (var item in Model.Figures)
+                                {
+
+                                    <li>
+                                        <a asp-page="./Figure" asp-route-id="@item.FigureId">
+                                            @Html.DisplayFor(modelItem => item.FigureName)
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+
+                        </div>
+                    </li>
+
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="./Quiz">Quiz <i class="fas fa-caret-down"></i></a>
+
+                    </li>
+
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="./Feedback">Feedback <i class="fas fa-caret-down"></i></a>
+
+                    </li>
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="./Favourite">Favourite <i class="fas fa-caret-down"></i></a>
+
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="container-inner">
+                <div class="box">
+                    <section class="cd-horizontal-timeline">
+                        <div class="timeline">
+                            <div class="events-wrapper">
+                                <div class="events">
+
+                                    <ol>
+                                        @foreach (var item in Model.Timelines)
+                                        {
+                                            <li>
+
+
+                                                <a data-date="@item.CreateDate" class="selected" asp-page="./HomeGuest" asp-route-id="@item.TimelineId">
+
+                                                </a>
+
+                                            </li>
+                                        }
+                                    </ol>
+
+
+
+
+                                    <span class="filling-line" aria-hidden="true"></span>
+                                </div>
+                                <!-- .events -->
+                            </div>
+                            <!-- .events-wrapper -->
+
+                            <ul class="cd-timeline-navigation">
+                                <li><a href="#0" class="prev inactive">Prev</a></li>
+                                <li><a href="#0" class="next">Next</a></li>
+                            </ul>
+                            <!-- .cd-timeline-navigation -->
+                        </div>
+                        <!-- .timeline -->
+
+                        <div class="events-content">
+                            <ol>
+                                <li class="selected" data-date="">
+                                    <h2><a asp-page="./TimeLine" asp-route-id="@Model.Timeline.TimelineId">@Html.DisplayFor(model => model.Timeline.Title)</a></h2>
+                                    <p>@Html.DisplayFor(model => model.Timeline.Description)</p>
+                                </li>
+                             </ol>
+                        </div>
+                        <form action="" class="searchbar">
+                            <input type="text" class="searchbox" placeholder="Tìm Kiếm" />
+                            <button id="btnsearch">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
+
+   
+
+</body>
+</html>

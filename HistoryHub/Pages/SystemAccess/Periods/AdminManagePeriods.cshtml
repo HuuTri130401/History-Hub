@@ -256,11 +256,11 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Dashboard</h1>
+            <h1>Periods</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/systemaccess/adminDashboard/Home">Home</a></li>
-                    <li class="breadcrumb-item active">Periods</li>
+                    <li class="breadcrumb-item"><a href="./Create">Create New</a></li>
+                    <li class="breadcrumb-item active">Period</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -294,17 +294,20 @@
                                 {
                                     <tbody>
                                         <tr>
-                                            <td>@Html.DisplayFor(modelItem => item.PeriodName)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.CreateByNavigation.Email)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Timeline.Title)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.PeriodName)</td>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.CreateByNavigation.Email)</td>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.Timeline.Title)</td>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.Status)</td>
                                             <td>
                                                 <a asp-page="./Edit" asp-route-id="@item.PeriodId"><i class="ri-edit-2-fill"></i></a> |
                                                 <a asp-page="./Details" asp-route-id="@item.PeriodId"><i class="ri-file-paper-line"></i></a> |
                                                 <a asp-page="./Delete" asp-route-id="@item.PeriodId"><i class="ri-delete-bin-line"></i></a>
                                             </td>
+
                                         </tr>
+
+
                                     </tbody>
                                 }
                             </table>
