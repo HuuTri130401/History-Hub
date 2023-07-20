@@ -43,9 +43,10 @@ namespace HistoryHub.Pages.Account
                 // Save user information to session
                 HttpContext.Session.SetString("UserName", user.FullName);
                 HttpContext.Session.SetString("UserEmail", user.Email);
+                HttpContext.Session.SetInt32("HasRole", user.RoleId);
+
                 if (user.RoleId == 1)
                 {
-                    HttpContext.Session.SetInt32("AdminRole", user.RoleId);
                     return RedirectToPage("/SystemAccess/AdminDashboard/Home");
                 }
                 if (user.RoleId == 2)
@@ -55,8 +56,7 @@ namespace HistoryHub.Pages.Account
                 }
                 if (user.RoleId == 3)
                 {
-                    HttpContext.Session.SetInt32("MemberRole", user.RoleId);
-                    return RedirectToPage("/MemberAccess");
+                    return RedirectToPage("/GuestAccess/Home");
                 }
                 ViewData["Message"] = "Invalid email or password.";
             }

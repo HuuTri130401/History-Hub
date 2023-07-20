@@ -35,16 +35,6 @@
                 <span asp-validation-for="User.RoleId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User.Score" class="control-label"></label>
-                <input asp-for="User.Score" class="form-control" />
-                <span asp-validation-for="User.Score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="User.Status" class="control-label"></label>
-                <input asp-for="User.Status" class="form-control" />
-                <span asp-validation-for="User.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="User.Phone" class="control-label"></label>
                 <input asp-for="User.Phone" class="form-control" />
                 <span asp-validation-for="User.Phone" class="text-danger"></span>
@@ -55,19 +45,21 @@
                 <span asp-validation-for="User.Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User.CreateDate" class="control-label"></label>
-                <input asp-for="User.CreateDate" class="form-control" />
-                <span asp-validation-for="User.CreateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input style="background-color: #66b3ff;
+                    color: #ffffff;
+                    padding: 5px 20px;
+                    border-radius: 3px;
+                    text-decoration: none;" type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
+<div style="margin-top: 15px">
+    <a style="background-color: forestgreen;
+       color: #ffffff;
+       padding: 10px 20px;
+       border-radius: 3px;
+       text-decoration: none;" asp-page="./SystemAccess/Users/Members">Back to List</a>
 </div>
 
 @section Scripts {

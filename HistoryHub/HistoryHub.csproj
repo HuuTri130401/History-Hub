@@ -21,8 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\GuestAccess\" />
-    <Folder Include="Pages\MemberAccess\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
