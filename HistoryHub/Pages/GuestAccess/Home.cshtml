@@ -244,98 +244,28 @@
                 </li>
 
                 <li style="font-size: 20px; margin-right: 30px; ">
-                    <a href="https://localhost:7248/MemberAccess/Quizzes/Index">Quiz</a>
+                    <a href="/Account/Login">Quiz</a>
 
                 </li>
 
                 <li style="font-size: 20px; margin-right: 30px; ">
-                    <a href="./Feedback">Feedback</a>
+                    <a href="/Account/Login">Feedback</a>
 
                 </li>
                 <li style="font-size: 20px; margin-right: 30px; ">
-                    <a href="./Favourite">Favourite</a>
+                    <a href="/Account/Login">Favourite</a>
 
+                </li>
+                <li style="font-size: 20px;  margin-right: 30px;">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/Account/Login">
+                        Login
+
+                    </a>
                 </li>
 
             </ul>
         </nav>
     </header>
-            <div class="navbar">
-                <ul>
-                    <li style="font-size: 20px; margin-right: 30px; ">
-                        <a href="">Home</a>
-                    </li>
-                    <li style="font-size: 20px; margin-right: 30px; ">
-                        <a href="">Dong chay lich su <i class="fas fa-caret-down"></i></a>
-                        <div class="dropdown-menu">
-
-                            <ul>
-                                @foreach (var item in Model.Timelines)
-                                {
-
-                                    <li>
-                                        <a asp-page="./HomeGuest" asp-route-id="@item.TimelineId">
-                                            @Html.DisplayFor(modelItem => item.Title)
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-                        </div>
-                    </li>
-                    <li style="font-size: 20px; margin-right: 30px;">
-                        <a href="">Period<i class="fas fa-caret-down"></i></a>
-                        <div class="dropdown-menu">
-
-                            <ul>
-                                @foreach (var item in Model.Periods)
-                                {
-
-                                    <li>
-                                        <a asp-page="./Period" asp-route-id="@item.PeriodId">
-                                            @Html.DisplayFor(modelItem => item.PeriodName)
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-
-                        </div>
-                    </li>
-
-                    <li style="font-size: 20px; margin-right: 30px; ">
-                        <a href="">Fiugre <i class="fas fa-caret-down"></i></a>
-                        <div class="dropdown-menu">
-
-                            <ul>
-                                @foreach (var item in Model.Figures)
-                                {
-
-                                    <li>
-                                        <a asp-page="./Figure" asp-route-id="@item.FigureId">
-                                            @Html.DisplayFor(modelItem => item.FigureName)
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-
-                        </div>
-                    </li>
-
-                    <li style="font-size: 20px; margin-right: 30px; ">
-                        <a href="./Quiz">Quiz <i class="fas fa-caret-down"></i></a>
-
-                    </li>
-
-                    <li style="font-size: 20px; margin-right: 30px; ">
-                        <a href="./Feedback">Feedback <i class="fas fa-caret-down"></i></a>
-
-                    </li>
-                    <li style="font-size: 20px; margin-right: 30px; ">
-                        <a href="./Favourite">Favourite <i class="fas fa-caret-down"></i></a>
-
-                    </li>
-
-                </ul>
-            </div>
 
             <div class="container-inner">
                 <div class="box">

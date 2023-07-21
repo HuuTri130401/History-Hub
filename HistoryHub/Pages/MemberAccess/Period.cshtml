@@ -1,7 +1,8 @@
 ﻿@page
-@model HistoryHub.Pages.MemberAccess.TimelineModel
+@model HistoryHub.Pages.MemberAccess.PeriodModel
 @{
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +71,7 @@
                     <div>
 
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            @foreach (var item in Model.AllPeriod)
+                            @foreach (var item in Model.Periods)
                             {
 
                                 <li>
@@ -89,7 +90,7 @@
                     <div>
 
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            @foreach (var item in Model.Figures)
+                            @foreach (var item in Model.AllFigure)
                             {
 
                                 <li>
@@ -103,51 +104,75 @@
                     </div>
                 </li>
 
-                <li style="font-size: 20px; margin-right: 30px; ">
-                    <a href="/Account/Login">Quiz</a>
+                @if (HttpContext.Session.GetInt32("UserId") != null)
+                {
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="./Quiz">Quiz</a>
 
-                </li>
+                    </li>
 
-                <li style="font-size: 20px; margin-right: 30px; ">
-                    <a href="/Account/Login">Feedback</a>
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="./Feedback">Feedback</a>
 
-                </li>
-                <li style="font-size: 20px; margin-right: 30px; ">
-                    <a href="/Account/Login">Favourite</a>
+                    </li>
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="./Favourite">Favourite</a>
 
-                </li>
-                <li style="font-size: 20px; margin-right: 30px; ">
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/Account/Login">
-                        Login
-                        
-                    </a>
-                </li>
+                    </li>
+
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="./UsersProfile">
+                            <img src="~/img/historyhub-admin.png" alt="Profile" class="rounded-circle">
+
+                        </a>
+                    </li>
+                }
+                else
+                {
+
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="/Account/Login">Quiz</a>
+
+                    </li>
+
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="/Account/Login">Feedback</a>
+
+                    </li>
+                    <li style="font-size: 20px; margin-right: 30px; ">
+                        <a href="/Account/Login">Favourite</a>
+
+                    </li>
+                    <li style="font-size: 20px;  margin-right: 30px;">
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/Account/Login">
+                            Login
+
+                        </a>
+                    </li>
+                }
+
             </ul>
         </nav>
     </header>
     <main id="main" class="main">
-        <h1 class="title"><a asp-page="./TimeLine" asp-route-id="@Model.Timeline.TimelineId">@Html.DisplayFor(model => model.Timeline.Title)</a></h1>
-        <p class="description">@Html.DisplayFor(model => model.Timeline.Description)</p>
+<h2 class="title"><a asp-page="./Period" asp-route-id="@Html.DisplayFor(model => model.Period.PeriodId)">@Html.DisplayFor(model => model.Period.PeriodName)</a></h2>
+<p class="description">@Html.DisplayFor(model => model.Period.Description)</p>
 
-        
+
+@foreach (var item in Model.Figures)
+{
+
     
-    @foreach (var item in Model.Period)
-    {
-
-
-        <h3 class="Ptitle">
-            <a asp-page="./Period" asp-route-id="@item.PeriodId">
-                @Html.DisplayFor(modelItem => item.PeriodName)
-            </a>
-        </h3>
-            <p class="description">
-                @Html.DisplayFor(modelItem => item.Description)
-            </p>
-        
-    }
-    </main>
+            <h3 class="Ptitle">
+                <a asp-page="./Figure" asp-route-id="@item.FigureId">
+                    @Html.DisplayFor(modelItem => item.FigureName)
+                </a>
+            </h3>
+        <p class="description"> 
+            @Html.DisplayFor(modelItem => item.Description)
+        </p>
+    
+}
+</main>
 </body>
 </html>
-
-
-

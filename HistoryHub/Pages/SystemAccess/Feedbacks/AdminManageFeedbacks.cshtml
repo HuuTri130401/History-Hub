@@ -276,49 +276,26 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Full Name</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.Feedback[0].Comment)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.Feedback[0].Status)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.Feedback[0].CreateDate)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.Feedback[0].Quiz)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.Feedback[0].Timeline)</th>
+                                        <th scope="col">@Html.DisplayNameFor(model => model.Feedback[0].User)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="fw-bold">aditor1@gmail.com</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">124</td>
-                                        <td><span class="badge bg-danger">Rejected</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">124</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">124</td>
-                                        <td class="fw-bold">98</td>
-                                        <td><span class="badge bg-danger">Rejected</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td class="fw-bold">98</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
-                                    </tr>
+                                    @foreach (var item in Model.Feedback)
+                                    {
+                                        <tr>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.Comment)</td>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.Status)</td>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.Quiz.Title)</td>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.Timeline.Title)</td>
+                                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.User.Email)</td>
+                                        </tr>
+                                    }
 
                                 </tbody>
                             </table>

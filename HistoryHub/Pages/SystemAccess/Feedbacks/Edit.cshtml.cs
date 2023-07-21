@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace HistoryHub.Pages.SystemAccess.Figures
+namespace HistoryHub.Pages.SystemAccess.Feedbacks
 {
     public class EditModel : PageModel
     {
@@ -16,23 +16,24 @@ namespace HistoryHub.Pages.SystemAccess.Figures
         }
 
         [BindProperty]
-        public Figure Figure { get; set; } = default!;
+        public Feedback Feedback { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Figures == null)
+            if (id == null || _context.Feedbacks == null)
             {
                 return NotFound();
             }
 
-            var figure = await _context.Figures.FirstOrDefaultAsync(m => m.FigureId == id);
-            if (figure == null)
+            var feedback = await _context.Feedbacks.FirstOrDefaultAsync(m => m.FeedbackId == id);
+            if (feedback == null)
             {
                 return NotFound();
             }
-            Figure = figure;
-            ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
-            ViewData["PeriodId"] = new SelectList(_context.Periods, "PeriodId", "Description");
+            Feedback = feedback;
+            ViewData["QuizId"] = new SelectList(_context.Quizzes, "QuizId", "Description");
+            ViewData["TimelineId"] = new SelectList(_context.Timelines, "TimelineId", "Description");
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
             return Page();
         }
 
@@ -45,7 +46,7 @@ namespace HistoryHub.Pages.SystemAccess.Figures
                 return Page();
             }
 
-            _context.Attach(Figure).State = EntityState.Modified;
+            _context.Attach(Feedback).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +54,7 @@ namespace HistoryHub.Pages.SystemAccess.Figures
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FigureExists(Figure.FigureId))
+                if (!FeedbackExists(Feedback.FeedbackId))
                 {
                     return NotFound();
                 }
@@ -63,17 +64,12 @@ namespace HistoryHub.Pages.SystemAccess.Figures
                 }
             }
 
-            return RedirectToPage("./AdminManageFigures");
+            return RedirectToPage("./Index");
         }
 
-        private bool FigureExists(object figureId)
+        private bool FeedbackExists(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        private bool FigureExists(int id)
-        {
-            return (_context.Figures?.Any(e => e.FigureId == id)).GetValueOrDefault();
+            return (_context.Feedbacks?.Any(e => e.FeedbackId == id)).GetValueOrDefault();
         }
     }
 }

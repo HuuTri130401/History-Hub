@@ -1,10 +1,14 @@
-﻿using BusinessObjects.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using BusinessObjects.Models;
 
-namespace HistoryHub.Pages.SystemAccess.Figures
+namespace HistoryHub.Pages.EditorAccess.Favorites
 {
     public class EditModel : PageModel
     {
@@ -16,23 +20,24 @@ namespace HistoryHub.Pages.SystemAccess.Figures
         }
 
         [BindProperty]
-        public Figure Figure { get; set; } = default!;
+        public Favorite Favorite { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Figures == null)
+            if (id == null || _context.Favorites == null)
             {
                 return NotFound();
             }
 
-            var figure = await _context.Figures.FirstOrDefaultAsync(m => m.FigureId == id);
-            if (figure == null)
+            var favorite =  await _context.Favorites.FirstOrDefaultAsync(m => m.FavoriteId == id);
+            if (favorite == null)
             {
                 return NotFound();
             }
-            Figure = figure;
-            ViewData["CreateBy"] = new SelectList(_context.Users, "UserId", "Email");
-            ViewData["PeriodId"] = new SelectList(_context.Periods, "PeriodId", "Description");
+            Favorite = favorite;
+           ViewData["QuizId"] = new SelectList(_context.Quizzes, "QuizId", "Description");
+           ViewData["TimelineId"] = new SelectList(_context.Timelines, "TimelineId", "Description");
+           ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
             return Page();
         }
 
@@ -45,7 +50,7 @@ namespace HistoryHub.Pages.SystemAccess.Figures
                 return Page();
             }
 
-            _context.Attach(Figure).State = EntityState.Modified;
+            _context.Attach(Favorite).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +58,7 @@ namespace HistoryHub.Pages.SystemAccess.Figures
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FigureExists(Figure.FigureId))
+                if (!FavoriteExists(Favorite.FavoriteId))
                 {
                     return NotFound();
                 }
@@ -63,17 +68,12 @@ namespace HistoryHub.Pages.SystemAccess.Figures
                 }
             }
 
-            return RedirectToPage("./AdminManageFigures");
+            return RedirectToPage("./Index");
         }
 
-        private bool FigureExists(object figureId)
+        private bool FavoriteExists(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        private bool FigureExists(int id)
-        {
-            return (_context.Figures?.Any(e => e.FigureId == id)).GetValueOrDefault();
+          return (_context.Favorites?.Any(e => e.FavoriteId == id)).GetValueOrDefault();
         }
     }
 }

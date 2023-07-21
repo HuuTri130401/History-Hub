@@ -1,19 +1,24 @@
-using BusinessObjects.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using BusinessObjects.Models;
 
-namespace HistoryHub.Pages.SystemAccess.Feedbacks
+namespace HistoryHub.Pages.EditorAccess.Feedbacks
 {
-    public class AdminManageFeedbacksModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly BusinessObjects.Models.HistoryHubContext _context;
 
-        public AdminManageFeedbacksModel(BusinessObjects.Models.HistoryHubContext context)
+        public IndexModel(BusinessObjects.Models.HistoryHubContext context)
         {
             _context = context;
         }
 
-        public IList<Feedback> Feedback { get; set; } = default!;
+        public IList<Feedback> Feedback { get;set; } = default!;
 
         public async Task OnGetAsync()
         {

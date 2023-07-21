@@ -69,6 +69,7 @@ namespace HistoryHub.Pages.Account
                 HttpContext.Session.SetString("UserName", user.FullName);
                 HttpContext.Session.SetString("UserEmail", user.Email);
                 HttpContext.Session.SetInt32("HasRole", user.RoleId);
+                HttpContext.Session.SetInt32("UserId", user.UserId);
 
                 if (user.RoleId == 1)
                 {
@@ -81,7 +82,7 @@ namespace HistoryHub.Pages.Account
                 }
                 if (user.RoleId == 3)
                 {
-                    return RedirectToPage("/GuestAccess/Home");
+                    return RedirectToPage("/MemberAccess/Home");
                 }
                 ViewData["Message"] = "Invalid email or password.";
             }
