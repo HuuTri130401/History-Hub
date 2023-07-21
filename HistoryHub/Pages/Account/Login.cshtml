@@ -88,6 +88,7 @@
                                             <div class="input-group has-validation">
                                                 <input type="text" asp-for="Email" class="form-control" required>
                                                 <div class="invalid-feedback">Please enter your Email.</div>
+                                                <span asp-validation-for="Email" class="text-danger"></span>
                                             </div>
                                         </div>
 
@@ -95,6 +96,7 @@
                                             <label for="yourPassword" class="form-label">Password</label>
                                             <input type="password" asp-for="Password" class="form-control" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
+                                            <span asp-validation-for="Password" class="text-danger"></span>
                                         </div>
 
                                         @if (ViewData["Message"] != null)

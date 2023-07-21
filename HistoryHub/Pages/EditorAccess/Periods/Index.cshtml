@@ -1,0 +1,66 @@
+﻿@page
+@model HistoryHub.Pages.EditorAccess.Periods.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Period[0].PeriodName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Period[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Period[0].CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Period[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Period[0].CreateByNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Period[0].Timeline)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Period) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PeriodName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateByNavigation.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timeline.Title)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PeriodId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PeriodId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PeriodId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

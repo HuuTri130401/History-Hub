@@ -45,23 +45,27 @@
                                             <label class="form-label">Your Email</label>
                                             <input asp-for="Email" type=" email" class="form-control" required>
                                             <div class="invalid-feedback">Enter a valid Email adddress!</div>
+                                            <span asp-validation-for="Email" class="text-danger"></span>
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label">Your Name</label>
                                             <input asp-for="FullName" type="text" class="form-control" required>
                                             <div class="invalid-feedback">Enter your name!</div>
+                                            <span asp-validation-for="FullName" class="text-danger"></span>
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label">Password</label>
                                             <div class="input-group has-validation">
                                                 <input asp-for="Password" type="password" class="form-control" required>
                                                 <div class="invalid-feedback">Enter your password!</div>
+                                                <span asp-validation-for="Password" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label">Phone</label>
                                             <input asp-for="Phone" type="text" class="form-control" required>
                                             <div class="invalid-feedback">Enter your phone!</div>
+                                            <span asp-validation-for="Phone" class="text-danger"></span>
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label">Address</label>

@@ -23,6 +23,8 @@ namespace HistoryHub.Pages.Account
         public string Email { get; set; }
 
         [BindProperty]
+        [MinLength(8, ErrorMessage = "Password must be at least 8 characters.")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [BindProperty]
