@@ -37,7 +37,8 @@ namespace HistoryHub.Pages.SystemAccess.Users
                 return NotFound();
             }
             User = user;
-            ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleName");
+            var roles = _context.Roles.Where(r => r.RoleName == "Editor" || r.RoleName == "Member");
+            ViewData["RoleId"] = new SelectList(roles, "RoleId", "RoleName");
             return Page();
         }
 
@@ -49,7 +50,7 @@ namespace HistoryHub.Pages.SystemAccess.Users
             //{
             //    return Page();
             //}
-            User = new User(User.UserId ,User.Email, User.FullName, User.Password, User.RoleId, status, User.Phone, User.Address, cretedDate);
+            User = new User(User.UserId ,User.Email, User.FullName, User.Password, User.RoleId, User.Status, User.Phone, User.Address, cretedDate);
             _context.Attach(User).State = EntityState.Modified;
 
             try

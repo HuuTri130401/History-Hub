@@ -25,8 +25,8 @@ namespace HistoryHub.Pages.SystemAccess.Quizzes
 
         public IActionResult OnGet()
         {
-        ViewData["CreatedBy"] = new SelectList(_userRepository.GetAll().ToList(), "UserId", "Email");
-        ViewData["TimelineId"] = new SelectList(_timelineRepository.GetAll().ToList(), "TimelineId", "Title");
+            ViewData["CreatedBy"] = new SelectList(_userRepository.GetAll().ToList(), "UserId", "Email");
+            ViewData["TimelineId"] = new SelectList(_timelineRepository.GetAll().ToList(), "TimelineId", "Title");
             return Page();
         }
 
@@ -36,7 +36,7 @@ namespace HistoryHub.Pages.SystemAccess.Quizzes
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _quizRepository.GetAll() == null || Quiz == null)
+            if (!ModelState.IsValid || _quizRepository.GetAll() == null || Quiz == null)
             {
                 return Page();
             }

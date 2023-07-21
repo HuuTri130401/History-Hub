@@ -10,5 +10,7 @@ namespace Repositories
     public interface IUserRepository : IGenericRepository<User>
     {
         User getUserByEmailAndPassword(string email, string password);
+
+        Task<bool> UpdateStatusUser(int? userId, bool status);
     }
 }

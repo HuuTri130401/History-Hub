@@ -14,5 +14,21 @@ namespace Repositories
         {
             return _historyHubContext.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
         }
+
+        public async Task<bool> UpdateStatusUser(int? userId, bool status)
+        {
+            {
+                var user = await _historyHubContext.Users.FindAsync(userId);
+
+                if (user != null)
+                {
+                    user.Status = status;
+                    await _historyHubContext.SaveChangesAsync();
+                    return true;
+                }
+
+                return false;
+            }
+        }
     }
 }

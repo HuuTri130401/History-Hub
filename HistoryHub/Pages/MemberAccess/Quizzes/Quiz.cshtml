@@ -1,0 +1,33 @@
+﻿@page
+@model HistoryHub.Pages.MemberAccess.DoQuiz.QuizModel
+@{
+}
+<h1>@Model.Quiz.Title</h1>
+<p>@Model.Quiz.Description</p>
+
+<form method="post" enctype="multipart/form-data">
+    @for (int i = 0; i < Model.Questions.Count; i++)
+    {
+        <h4>@Model.Questions[i].Question1</h4>
+        <input type="hidden" asp-for="@Model.Questions[i].QuestionId" />
+        <input type="radio" name="answer_@Model.Questions[i].QuestionId" value="@Model.Questions[i].CorrectAnswer" /> @Model.Questions[i].CorrectAnswer
+
+        <br />
+        <input type="radio" name="answer_@Model.Questions[i].QuestionId" value="@Model.Questions[i].FalseAnswer1" /> @Model.Questions[i].FalseAnswer1
+
+        <br />
+        <input type="radio" name="answer_@Model.Questions[i].QuestionId" value="@Model.Questions[i].FalseAnswer2" /> @Model.Questions[i].FalseAnswer2
+
+        <br />
+        <input type="radio" name="answer_@Model.Questions[i].QuestionId" value="@Model.Questions[i].FalseAnswer3" /> @Model.Questions[i].FalseAnswer3
+
+        <br />
+    }
+    <button type="submit">Submit</button>
+</form>
+
+
+@if (Request.Method == "POST")
+{
+    <h2>Your score: @Model.Score/100</h2>
+}
